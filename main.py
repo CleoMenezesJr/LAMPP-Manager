@@ -30,6 +30,7 @@ class Handler(object):
         self.proftp_status = builder.get_object('proftp_status')
         self.button_p_stop = builder.get_object('button_p_stop')
         self.button_p_restart = builder.get_object('button_p_restart')
+        self.about = builder.get_object('about')
 
 
 
@@ -260,7 +261,8 @@ class Handler(object):
             os.system('dolphin /var/www/html')
 
 # open about
-    
+    def on_about_clicked(self, *args):
+        os.popen('sensible-browser https://github.com/CleoMenezes/LAMPP-Manager/')
 
 
 #start all button
@@ -273,7 +275,7 @@ class Handler(object):
         except:
             os.system('pkexec /opt/lampp/lampp start')
 
-    
+
 #stop all button
     def on_button_stop_all_clicked(self, *args):
         try:
