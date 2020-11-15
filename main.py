@@ -6,7 +6,7 @@ import webbrowser
 
 builder = Gtk.Builder()
 
-builder.add_from_file('interface.glade')
+builder.add_from_file("interface.glade")
 
 class Handler(object):
     def __init__(self, *args, **kwargs):
@@ -45,6 +45,9 @@ class Handler(object):
                     self.apache_status.set_text('Inactive')
                 elif 'running' in str(status_command_a[2]):
                     self.apache_status.set_text('Active')
+                else:
+                    self.apache_status.set_text('Not Installed')
+                    
         except:
             if str(a_first_status) != 'Active' or str(a_first_status) != 'Inactive':
                 status_command  = os.popen('pkexec /opt/lampp/lampp status').readlines()
@@ -52,6 +55,8 @@ class Handler(object):
                     self.apache_status.set_text('Inactive')
                 elif 'Apache is running' in str(status_command[1]):
                     self.apache_status.set_text('Active')
+                else:
+                    self.apache_status.set_text('Not Installed')
 
 
 
@@ -65,6 +70,9 @@ class Handler(object):
                     self.mysql_status.set_text('Inactive')
                 elif 'running' in str(status_command_m[2]):
                     self.mysql_status.set_text('Active')
+                else:
+                    self.mysql_status.set_text('Not Installed')
+
         except:
             if str(a_first_status) != 'Active' or str(a_first_status) != 'Inactive':
                 status_command  = os.popen('pkexec /opt/lampp/lampp status').readlines()
@@ -72,6 +80,8 @@ class Handler(object):
                     self.mysql_status.set_text('Inactive')
                 elif 'MySQL is running' in str(status_command[2]):
                     self.mysql_status.set_text('Active')
+                else:
+                    self.mysql_status.set_text('Not Installed')
 
 
 #putting current status of proftp service
@@ -83,6 +93,8 @@ class Handler(object):
                 self.proftp_status.set_text('Inactive')
             elif 'ProFTPD is running' in str(status_command[3]):
                 self.proftp_status.set_text('Active')
+            else:
+                self.proftp_status.set_text('Not Installed')
 
 ################################################################################
 
