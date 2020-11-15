@@ -254,7 +254,7 @@ class Handler(object):
 #restart ProFTPD button    
     def on_button_p_restart_clicked(self, *args):
 
-        os.popen('pkexec /opt/lampp/lampp reloadftp')
+        os.popen('pkexec /opt/lampp/lampp reloadftp && sudo /opt/lampp/lampp startftp')
         status_command  = os.popen('pkexec /opt/lampp/lampp status').readlines()
         if 'ProFTPD is deactivated' in str(status_command[3]):
             self.proftp_status.set_text('Inactive')
@@ -305,8 +305,25 @@ class Handler(object):
             self.on_button_m_restart_clicked()
             self.on_button_p_restart_clicked()
         except IndexError:
-            os.system('pkexec /opt/lampp/lampp reload')
-            os.system('pkexec /opt/lampp/lampp start')
+            os.system('sudo /opt/lampp/lampp reload; sudo /opt/lampp/lampp start')
+            #apache
+            status_command  = os.popen('opt/lampp/lampp status').readlines()
+            if 'Apache is not running' in str(status_command[1]):
+                self.apache_status.set_text('Inactive')
+            elif 'Apache is running' in str(status_command[1]):
+                self.apache_status.set_text('Active')
+            #mysql
+            status_command  = os.popen('opt/lampp/lampp status').readlines()
+            if 'MySQL is not running' in str(status_command[2]):
+                self.mysql_status.set_text('Inactive')
+            elif 'MySQL is running' in str(status_command[2]):
+                self.mysql_status.set_text('Active')
+            #ftp
+            status_command  = os.popen('pkexec /opt/lampp/lampp status').readlines()
+            if 'ProFTPD is deactivated' in str(status_command[3]):
+                self.proftp_status.set_text('Inactive')
+            elif 'ProFTPD is running' in str(status_command[3]):
+                self.proftp_status.set_text('Active')
         
 
 
