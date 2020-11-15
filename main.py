@@ -41,60 +41,64 @@ class Handler(object):
         a_first_status = self.apache_status.get_label()
         try:
             if str(a_first_status) != 'Active' or str(a_first_status) != 'Inactive':
-                if 'dead' in str(status_command_a[2]):
-                    self.apache_status.set_text('Inactive')
-                elif 'running' in str(status_command_a[2]):
-                    self.apache_status.set_text('Active')
-                else:
-                    self.apache_status.set_text('Not Installed')
+                try:
+                    if status_command_a[0][0] == '●':
+                        if 'dead' in str(status_command_a[2]):
+                            self.apache_status.set_text('Inactive')
+                        elif 'running' in str(status_command_a[2]):
+                            self.apache_status.set_text('Active')
                     
+                except:
+                    status_command = os.popen('sudo /opt/lampp/lampp status').readlines()
+                    if 'Apache is not running' in str(status_command[1]):
+                        self.apache_status.set_text('Inactive')
+                    elif 'Apache is running' in str(status_command[1]):
+                        self.apache_status.set_text('Active')
+                            
         except:
-            if str(a_first_status) != 'Active' or str(a_first_status) != 'Inactive':
-                status_command  = os.popen('pkexec /opt/lampp/lampp status').readlines()
-                if 'Apache is not running' in str(status_command[1]):
-                    self.apache_status.set_text('Inactive')
-                elif 'Apache is running' in str(status_command[1]):
-                    self.apache_status.set_text('Active')
-                else:
-                    self.apache_status.set_text('Not Installed')
+            self.apache_status.set_text('Not found')
 
 
 
 #putting current status of mysql service
         
+
+
         status_command_m  = os.popen('service mysql status').readlines()
         m_first_status = self.mysql_status.get_label()
-        try:
-            if str(m_first_status) != 'Active' or str(m_first_status) != 'Inactive':
-                if 'dead' in str(status_command_m[2]):
-                    self.mysql_status.set_text('Inactive')
-                elif 'running' in str(status_command_m[2]):
-                    self.mysql_status.set_text('Active')
-                else:
-                    self.mysql_status.set_text('Not Installed')
 
-        except:
-            if str(a_first_status) != 'Active' or str(a_first_status) != 'Inactive':
-                status_command  = os.popen('pkexec /opt/lampp/lampp status').readlines()
-                if 'MySQL is not running' in str(status_command[2]):
-                    self.mysql_status.set_text('Inactive')
-                elif 'MySQL is running' in str(status_command[2]):
-                    self.mysql_status.set_text('Active')
+        try:
+            
+            if str(m_first_status) != 'Active' or str(m_first_status) != 'Inactive':                
+                if status_command_m[0][0] == '●':
+                    if 'dead' in str(status_command_m[2]):
+                        self.mysql_status.set_text('Inactive')
+                    elif 'running' in str(status_command_m[2]):
+                        self.mysql_status.set_text('Active')
+
+                    
                 else:
-                    self.mysql_status.set_text('Not Installed')
+                    status_command_m1 = os.popen('sudo /opt/lampp/lampp status').readlines()
+                    if 'MySQL is not running' in str(status_command_m1[2]):
+                        self.mysql_status.set_text('Inactive')
+                    elif 'Apache is running' in str(status_command_m1[2]):
+                        self.mysql_status.set_text('Active')
+                            
+        except:
+            self.mysql_status.set_text('Not found')
 
 
 #putting current status of proftp service
-
-        p_first_status = self.proftp_status.get_label()
-        if str(p_first_status) != 'Active' or str(p_first_status) != 'Inactive':
-            status_command  = os.popen('pkexec /opt/lampp/lampp status').readlines()
-            if 'ProFTPD is deactivated' in str(status_command[3]):
-                self.proftp_status.set_text('Inactive')
-            elif 'ProFTPD is running' in str(status_command[3]):
-                self.proftp_status.set_text('Active')
-            else:
-                self.proftp_status.set_text('Not Installed')
+        try:
+            p_first_status = self.proftp_status.get_label()
+            if str(p_first_status) != 'Active' or str(p_first_status) != 'Inactive':
+                status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
+                if 'ProFTPD is deactivated' in str(status_command[3]) or 'ProFTPD is not running' in str(status_command[3]):
+                    self.proftp_status.set_text('Inactive')
+                elif 'ProFTPD is running' in str(status_command[3]):
+                    self.proftp_status.set_text('Active')
+        except:
+            self.proftp_status.set_text('Not found')
 
 ################################################################################
 
@@ -119,7 +123,7 @@ class Handler(object):
                 elif 'running' in str(status_command[2]):
                     self.apache_status.set_text('Active')
         except:
-            os.popen('pkexec /opt/lampp/lampp startapache')
+            os.popen('sudo /opt/lampp/lampp startapache')
             status_command  = os.popen('opt/lampp/lampp status').readlines()
             if 'Apache is not running' in str(status_command[1]):
                 self.apache_status.set_text('Inactive')
@@ -139,7 +143,7 @@ class Handler(object):
                 elif 'dead' in str(status_command[2]):
                     self.apache_status.set_text('Inactive')
         except:
-            os.popen('pkexec /opt/lampp/lampp stopapache')
+            os.popen('sudo /opt/lampp/lampp stopapache')
             status_command  = os.popen('opt/lampp/lampp status').readlines()
             if 'Apache is not running' in str(status_command[1]):
                 self.mysql_status.set_text('Inactive')
@@ -159,7 +163,7 @@ class Handler(object):
                 elif 'dead' in str(status_command[2]):
                     self.apache_status.set_text('Inactive')
         except:
-            os.popen('pkexec /opt/lampp/lampp reloadapache')
+            os.popen('sudo /opt/lampp/lampp reloadapache')
             status_command  = os.popen('opt/lampp/lampp status').readlines()
             if 'Apache is not running' in str(status_command[1]):
                 self.apache_status.set_text('Inactive')
@@ -181,7 +185,7 @@ class Handler(object):
                 elif 'running' in str(status_command[2]):
                     self.mysql_status.set_text('Active')
         except:
-            os.popen('pkexec /opt/lampp/lampp startmysql')
+            os.popen('sudo /opt/lampp/lampp startmysql')
             status_command  = os.popen('opt/lampp/lampp status').readlines()
             if 'MySQL is not running' in str(status_command[2]):
                 self.mysql_status.set_text('Inactive')
@@ -203,7 +207,7 @@ class Handler(object):
                 elif 'dead' in str(status_command[2]):
                     self.mysql_status.set_text('Inactive')
         except:
-            os.popen('pkexec /opt/lampp/lampp stopmysql')
+            os.popen('sudo /opt/lampp/lampp stopmysql')
             status_command  = os.popen('opt/lampp/lampp status').readlines()
             if 'MySQL is not running' in str(status_command[2]):
                 self.mysql_status.set_text('Inactive')
@@ -222,7 +226,7 @@ class Handler(object):
                 elif 'dead' in str(status_command[2]):
                     self.mysql_status.set_text('Inactive')
         except:
-            os.popen('pkexec /opt/lampp/lampp reloadmysql')
+            os.popen('sudo /opt/lampp/lampp reloadmysql')
             status_command  = os.popen('opt/lampp/lampp status').readlines()
             if 'MySQL is not running' in str(status_command[2]):
                 self.mysql_status.set_text('Inactive')
@@ -234,8 +238,8 @@ class Handler(object):
 #start ProFTPD button
     def on_button_p_start_clicked(self, *args):
 
-        os.popen('pkexec /opt/lampp/lampp startftp')
-        status_command  = os.popen('pkexec /opt/lampp/lampp status').readlines()
+        os.popen('sudo /opt/lampp/lampp startftp')
+        status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
         if 'ProFTPD is deactivated' in str(status_command[3]):
             self.proftp_status.set_text('Inactive')
         elif 'ProFTPD is running' in str(status_command[3]):
@@ -244,8 +248,8 @@ class Handler(object):
 #stop ProFTPD button    
     def on_button_p_stop_clicked(self, *args):
 
-        os.popen('pkexec /opt/lampp/lampp stopftp')
-        status_command  = os.popen('pkexec /opt/lampp/lampp status').readlines()
+        os.popen('sudo /opt/lampp/lampp stopftp')
+        status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
         if 'ProFTPD is deactivated' in str(status_command[3]):
             self.proftp_status.set_text('Inactive')
         elif 'ProFTPD is running' in str(status_command[3]):
@@ -254,8 +258,8 @@ class Handler(object):
 #restart ProFTPD button    
     def on_button_p_restart_clicked(self, *args):
 
-        os.popen('pkexec /opt/lampp/lampp reloadftp && sudo /opt/lampp/lampp startftp')
-        status_command  = os.popen('pkexec /opt/lampp/lampp status').readlines()
+        os.popen('sudo /opt/lampp/lampp reloadftp && sudo /opt/lampp/lampp startftp')
+        status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
         if 'ProFTPD is deactivated' in str(status_command[3]):
             self.proftp_status.set_text('Inactive')
         elif 'ProFTPD is running' in str(status_command[3]):
@@ -285,7 +289,7 @@ class Handler(object):
             self.on_button_m_start_clicked()
             self.on_button_p_start_clicked()
         except:
-            os.system('pkexec /opt/lampp/lampp start')
+            os.system('sudo /opt/lampp/lampp start')
 
 
 #stop all button
@@ -295,7 +299,7 @@ class Handler(object):
             self.on_button_m_stop_clicked()
             self.on_button_p_stop_clicked()
         except IndexError:
-            os.system('pkexec /opt/lampp/lampp stop')
+            os.system('sudo /opt/lampp/lampp stop')
 
 
 #restart all button
@@ -319,7 +323,7 @@ class Handler(object):
             elif 'MySQL is running' in str(status_command[2]):
                 self.mysql_status.set_text('Active')
             #ftp
-            status_command  = os.popen('pkexec /opt/lampp/lampp status').readlines()
+            status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
             if 'ProFTPD is deactivated' in str(status_command[3]):
                 self.proftp_status.set_text('Inactive')
             elif 'ProFTPD is running' in str(status_command[3]):
