@@ -91,8 +91,9 @@ class Handler(object):
 #putting current status of proftp service
         try:
             p_first_status = self.proftp_status.get_label()
+            print(p_first_status)
             if str(p_first_status) != 'Active' or str(p_first_status) != 'Inactive':
-                status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
+                status_command = os.popen('sudo /opt/lampp/lampp status').readlines()
                 if 'ProFTPD is deactivated' in str(status_command[3]) or 'ProFTPD is not running' in str(status_command[3]):
                     self.proftp_status.set_text('Inactive')
                 elif 'ProFTPD is running' in str(status_command[3]):
@@ -239,7 +240,7 @@ class Handler(object):
     def on_button_p_start_clicked(self, *args):
 
         os.popen('sudo /opt/lampp/lampp startftp')
-        status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
+        status_command = os.popen('sudo /opt/lampp/lampp status').readlines()
         if 'ProFTPD is deactivated' in str(status_command[3]):
             self.proftp_status.set_text('Inactive')
         elif 'ProFTPD is running' in str(status_command[3]):
