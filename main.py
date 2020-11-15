@@ -305,7 +305,8 @@ class Handler(object):
             self.on_button_m_restart_clicked()
             self.on_button_p_restart_clicked()
         except IndexError:
-            os.system('pkexec /opt/lampp/lampp restart')
+            os.system('pkexec /opt/lampp/lampp reload')
+            os.system('pkexec /opt/lampp/lampp start')
         
 
 
