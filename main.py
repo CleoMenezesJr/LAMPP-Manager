@@ -18,7 +18,7 @@ class Handler(object):
         self.button_m_stop = builder.get_object('button_m_stop')
         self.apache_status = builder.get_object('apache_status')
         self.mysql_status = builder.get_object('mysql_status')
-        #self.open_directory = builder.get_object('open_directory')
+        self.open_directory = builder.get_object('open_directory')
         #self.install_lampp = builder.get_object('install_lampp')
         self.button_a_restart = builder.get_object('button_a_restart')
         self.button_m_restart = builder.get_object('button_m_restart')
@@ -268,14 +268,14 @@ class Handler(object):
 
 ##########################################################################################################
 
-# #open directory button
-#     def on_open_directory_clicked(self, *args):
-#         try:
-#             os.system('nautilus /var/www/html')
-#         except:
-#             os.system('nemo /var/www/html')
-#         else:
-#             os.system('dolphin /var/www/html')
+#open directory button
+    def on_open_directory_clicked(self, *args):
+        try:
+            os.popen('nautilus /var/www/html')
+        except:
+            os.popen('nemo /var/www/html')
+        else:
+            os.popen('dolphin /var/www/html')
 
 
 # open about

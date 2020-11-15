@@ -35,10 +35,11 @@
         </child>
         <child>
           <object class="GtkButton" id="open_directory">
-            <property name="label" translatable="yes">Directory (soon)</property>
+            <property name="label" translatable="yes">Open directory</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_open_directory_clicked" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -58,7 +59,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="about">
+          <object class="GtkButton">
             <property name="label" translatable="yes">About</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
