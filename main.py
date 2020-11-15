@@ -18,8 +18,8 @@ class Handler(object):
         self.button_m_stop = builder.get_object('button_m_stop')
         self.apache_status = builder.get_object('apache_status')
         self.mysql_status = builder.get_object('mysql_status')
-        self.open_directory = builder.get_object('open_directory')
-        self.install_lampp = builder.get_object('install_lampp')
+        #self.open_directory = builder.get_object('open_directory')
+        #self.install_lampp = builder.get_object('install_lampp')
         self.button_a_restart = builder.get_object('button_a_restart')
         self.button_m_restart = builder.get_object('button_m_restart')
         self.button_start_all = builder.get_object('button_start_all')
@@ -91,7 +91,6 @@ class Handler(object):
 #putting current status of proftp service
         try:
             p_first_status = self.proftp_status.get_label()
-            print(p_first_status)
             if str(p_first_status) != 'Active' or str(p_first_status) != 'Inactive':
                 status_command = os.popen('sudo /opt/lampp/lampp status').readlines()
                 if 'ProFTPD is deactivated' in str(status_command[3]) or 'ProFTPD is not running' in str(status_command[3]):
@@ -241,7 +240,7 @@ class Handler(object):
 
         os.popen('sudo /opt/lampp/lampp startftp')
         status_command = os.popen('sudo /opt/lampp/lampp status').readlines()
-        if 'ProFTPD is deactivated' in str(status_command[3]):
+        if 'ProFTPD is deactivated' in str(status_command[3]) or 'ProFTPD is not running' in str(status_command[3]):
             self.proftp_status.set_text('Inactive')
         elif 'ProFTPD is running' in str(status_command[3]):
             self.proftp_status.set_text('Active')
@@ -251,7 +250,7 @@ class Handler(object):
 
         os.popen('sudo /opt/lampp/lampp stopftp')
         status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
-        if 'ProFTPD is deactivated' in str(status_command[3]):
+        if 'ProFTPD is deactivated' in str(status_command[3]) or 'ProFTPD is not running' in str(status_command[3]):
             self.proftp_status.set_text('Inactive')
         elif 'ProFTPD is running' in str(status_command[3]):
             self.proftp_status.set_text('Active')
@@ -259,23 +258,25 @@ class Handler(object):
 #restart ProFTPD button    
     def on_button_p_restart_clicked(self, *args):
 
-        os.popen('sudo /opt/lampp/lampp reloadftp && sudo /opt/lampp/lampp startftp')
+        os.popen('sudo /opt/lampp/lampp reloadftp')
+        os.popen('sudo /opt/lampp/lampp startftp')
         status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
-        if 'ProFTPD is deactivated' in str(status_command[3]):
+        if 'ProFTPD is deactivated' in str(status_command[3]) or 'ProFTPD is not running' in str(status_command[3]):
             self.proftp_status.set_text('Inactive')
         elif 'ProFTPD is running' in str(status_command[3]):
             self.proftp_status.set_text('Active')
 
 ##########################################################################################################
 
-#open directory button
-    def on_open_directory_clicked(self, *args):
-        try:
-            os.system('nautilus /var/www/html')
-        except:
-            os.system('nemo /var/www/html')
-        else:
-            os.system('dolphin /var/www/html')
+# #open directory button
+#     def on_open_directory_clicked(self, *args):
+#         try:
+#             os.system('nautilus /var/www/html')
+#         except:
+#             os.system('nemo /var/www/html')
+#         else:
+#             os.system('dolphin /var/www/html')
+
 
 # open about
     def on_about_clicked(self, *args):
