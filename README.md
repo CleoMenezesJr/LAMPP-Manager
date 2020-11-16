@@ -17,8 +17,12 @@
     <img src="https://img.shields.io/github/downloads/CleoMenezes/LAMPP-Manager/total"
         alt="Download" /></a>
 </h2>
+<h1 align="center">
 
 ![screenshot](Media/demo.gif)
+
+</h1>
+
 
 # ⚈ About & How to use
 Disclaimer: This project was created in order to facilitate the use of LAMPP. Before it was just a personal project to facilitate my day to day, but I decided to share it. Please enjoy!
@@ -46,12 +50,21 @@ When opening LAMPP Manager, a terminal will first appear asking for your root pa
 Although there is a Bitmani installer that could do this manually, I recommend using the script I prepared.
 Several times I had problems both using Bitmani's XAMPP both by terminal and with LAMPP Manager. If you want to fully enjoy without headaches, use the installer found in the options tab.
 </p>
-<img align="center" src="Media/scpop.png"> <br>
-<p align="center">Pop!_OS</p>
-<img align="center" src="Media/scut.png"> <br>
-<p align="center">Ubuntu</p>
-<img align="center" src="Media/sckde.png"> <br>
-<p align="center">KDE Plasma</p>
+<br>
+
+## Some Screenshots
+
+<br>
+<h1 align="center">
+  <p align="center">Pop!_OS</p>
+  <img align="center" src="Media/scpop.png"> <br>
+  <p align="center">Ubuntu</p>
+  <img align="center" src="Media/scut.png"> <br>
+  <p align="center">KDE Plasma</p>
+  <img align="center" src="Media/sckde.png"> <br>
+</h1>
+
+
 
 # ⚈ Tech Stack
 
