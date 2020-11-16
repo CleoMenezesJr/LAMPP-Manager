@@ -39,7 +39,7 @@ Maybe for those who are used to doing everything for the terminal, they don't ca
 
 <br>
 
-# ⚈ How to get start
+# ⚈ How to get started
 <p>
 Download the deb version available here <a href="#">https://github.com/CleoMenezes/LAMPP-Manager/releases/tag/v0.0.1</a>), it is currently available only in deb. In the future I think about migrating to Flatpak. Install via your package installer probably just by opening the file. Install it as you normally do with any other program.
 When the installation is finished, no other process is necessary.
