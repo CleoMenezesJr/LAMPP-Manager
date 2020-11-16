@@ -19,7 +19,7 @@ class Handler(object):
         self.apache_status = builder.get_object('apache_status')
         self.mysql_status = builder.get_object('mysql_status')
         self.open_directory = builder.get_object('open_directory')
-        #self.install_lampp = builder.get_object('install_lampp')
+        self.install_lampp = builder.get_object('install_lampp')
         self.button_a_restart = builder.get_object('button_a_restart')
         self.button_m_restart = builder.get_object('button_m_restart')
         self.button_start_all = builder.get_object('button_start_all')
@@ -39,24 +39,29 @@ class Handler(object):
 #putting current status of apacher service WORKING
         status_command_a  = os.popen('service apache2 status').readlines()
         a_first_status = self.apache_status.get_label()
-        try:
-            if str(a_first_status) != 'Active' or str(a_first_status) != 'Inactive':
+        if str(a_first_status) != 'Active' or str(a_first_status) != 'Inactive':
+            try:
                 try:
                     if status_command_a[0][0] == '●':
                         if 'dead' in str(status_command_a[2]):
                             self.apache_status.set_text('Inactive')
                         elif 'running' in str(status_command_a[2]):
                             self.apache_status.set_text('Active')
+                        else:
+                            self.apache_status.set_text('Cannot connect')
                     
                 except:
-                    status_command = os.popen('sudo /opt/lampp/lampp status').readlines()
-                    if 'Apache is not running' in str(status_command[1]):
-                        self.apache_status.set_text('Inactive')
-                    elif 'Apache is running' in str(status_command[1]):
-                        self.apache_status.set_text('Active')
-                            
-        except:
-            self.apache_status.set_text('Not found')
+                    if 'sudo' not in os.popen('sudo /opt/lampp/lampp status').readlines()[0]:
+                        status_command = os.popen('sudo /opt/lampp/lampp status').readlines()
+                        if 'Apache is not running' in str(status_command[1]):
+                            self.apache_status.set_text('Inactive')
+                        elif 'Apache is running' in str(status_command[1]):
+                            self.apache_status.set_text('Active')
+                        else:
+                            self.apache_status.set_text('Cannot connect')                    
+                                
+            except IndexError:
+                self.apache_status.set_text('Not found')
 
 
 
@@ -66,39 +71,40 @@ class Handler(object):
 
         status_command_m  = os.popen('service mysql status').readlines()
         m_first_status = self.mysql_status.get_label()
+        if str(m_first_status) != 'Active' or str(m_first_status) != 'Inactive': 
+            try:  
+                try:               
+                    if status_command_m[0][0] == '●':
+                        if 'dead' in str(status_command_m[2]):
+                            self.mysql_status.set_text('Inactive')
+                        elif 'running' in str(status_command_m[2]):
+                            self.mysql_status.set_text('Active')
 
-        try:
-            
-            if str(m_first_status) != 'Active' or str(m_first_status) != 'Inactive':                
-                if status_command_m[0][0] == '●':
-                    if 'dead' in str(status_command_m[2]):
-                        self.mysql_status.set_text('Inactive')
-                    elif 'running' in str(status_command_m[2]):
-                        self.mysql_status.set_text('Active')
-
-                    
-                else:
-                    status_command_m1 = os.popen('sudo /opt/lampp/lampp status').readlines()
-                    if 'MySQL is not running' in str(status_command_m1[2]):
-                        self.mysql_status.set_text('Inactive')
-                    elif 'Apache is running' in str(status_command_m1[2]):
-                        self.mysql_status.set_text('Active')
-                            
-        except:
-            self.mysql_status.set_text('Not found')
+                        
+                except:
+                    if 'sudo' not in os.popen('sudo /opt/lampp/lampp status').readlines()[0]:
+                        status_command_m1 = os.popen('sudo /opt/lampp/lampp status').readlines()
+                        if 'MySQL is not running' in str(status_command_m1[2]):
+                            self.mysql_status.set_text('Inactive')
+                        elif 'Apache is running' in str(status_command_m1[2]):
+                            self.mysql_status.set_text('Active')
+                                
+            except IndexError:
+                self.mysql_status.set_text('Not found')
 
 
 #putting current status of proftp service
-        try:
-            p_first_status = self.proftp_status.get_label()
-            if str(p_first_status) != 'Active' or str(p_first_status) != 'Inactive':
+        p_first_status = self.proftp_status.get_label()
+        if str(p_first_status) != 'Active' or str(p_first_status) != 'Inactive':
+            try:
+
                 status_command = os.popen('sudo /opt/lampp/lampp status').readlines()
                 if 'ProFTPD is deactivated' in str(status_command[3]) or 'ProFTPD is not running' in str(status_command[3]):
                     self.proftp_status.set_text('Inactive')
                 elif 'ProFTPD is running' in str(status_command[3]):
                     self.proftp_status.set_text('Active')
-        except:
-            self.proftp_status.set_text('Not found')
+            except:
+                self.proftp_status.set_text('Not found')
 
 ################################################################################
 
@@ -113,158 +119,191 @@ class Handler(object):
 
 #apache start button WORKING
     def on_button_a_start_clicked(self, *args):
-        
         try:
-            if 'Cannot run program' not in os.popen('service apache2 status').readlines()[0]:            
-                os.system('service apache2 start')
-                status_command = os.popen('service apache2 status').readlines()  
-                if 'dead' in str(status_command[2]):
-                    self.apache_status.set_text('Inactive')
-                elif 'running' in str(status_command[2]):
-                    self.apache_status.set_text('Active')
+            try:
+                if 'Cannot run program' not in os.popen('service apache2 status').readlines()[0]:            
+                    os.system('service apache2 start')
+                    status_command = os.popen('service apache2 status').readlines()  
+                    if 'dead' in str(status_command[2]):
+                        self.apache_status.set_text('Inactive')
+                    elif 'running' in str(status_command[2]):
+                        self.apache_status.set_text('Active')
+            except:
+                if 'sudo' not in os.popen('sudo /opt/lampp/lampp status').readlines()[0]:
+                    os.popen('sudo /opt/lampp/lampp startapache')
+                    status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
+                    if 'Apache is not running' in str(status_command[1]):
+                        self.apache_status.set_text('Inactive')
+                    elif 'Apache is running' in str(status_command[1]):
+                        self.apache_status.set_text('Active')
         except:
-            os.popen('sudo /opt/lampp/lampp startapache')
-            status_command  = os.popen('opt/lampp/lampp status').readlines()
-            if 'Apache is not running' in str(status_command[1]):
-                self.apache_status.set_text('Inactive')
-            elif 'Apache is running' in str(status_command[1]):
-                self.apache_status.set_text('Active')
+            self.apache_status.set_text('Cannot connect')
 
 
 #apache stop button WORKING
     def on_button_a_stop_clicked(self, *args):
-        
         try:
-            if 'Cannot run program' not in os.popen('service apache2 status').readlines()[0]:
-                os.system('service apache2 stop')
-                status_command  = os.popen('service apache2 status').readlines()
-                if 'running' in str(status_command[2]):
-                    self.apache_status.set_text('Active')
-                elif 'dead' in str(status_command[2]):
-                    self.apache_status.set_text('Inactive')
+            try:
+                if 'Cannot run program' not in os.popen('service apache2 status').readlines()[0]:
+                    os.system('service apache2 stop')
+                    status_command  = os.popen('service apache2 status').readlines()
+                    if 'running' in str(status_command[2]):
+                        self.apache_status.set_text('Active')
+                    elif 'dead' in str(status_command[2]):
+                        self.apache_status.set_text('Inactive')
+                    else:
+                        self.apache_status.set_text('Cannot connect')
+            except:
+                if 'sudo' not in os.popen('sudo /opt/lampp/lampp status').readlines()[0]:
+                    os.popen('sudo /opt/lampp/lampp stopapache')
+                    status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
+                    if 'Apache is not running' in str(status_command[1]):
+                        self.mysql_status.set_text('Inactive')
+                    elif 'Apache is running' in str(status_command[1]):
+                        self.apache_status.set_text('Active')
         except:
-            os.popen('sudo /opt/lampp/lampp stopapache')
-            status_command  = os.popen('opt/lampp/lampp status').readlines()
-            if 'Apache is not running' in str(status_command[1]):
-                self.mysql_status.set_text('Inactive')
-            elif 'Apache is running' in str(status_command[1]):
-                self.apache_status.set_text('Active')
+            self.apache_status.set_text('Cannot connect')
 
 
 #restart apache button WORKING
     def on_button_a_restart_clicked(self, *args):
         try:
-            if 'Cannot run program' not in os.popen('service apache2 status').readlines()[0]:
+            try:
+                if 'Cannot run program' not in os.popen('service apache2 status').readlines()[0]:
 
-                os.system('service apache2 restart')
-                status_command = os.popen('service apache2 status').readlines()
-                if 'running' in str(status_command[2]):
-                    self.apache_status.set_text('Active')
-                elif 'dead' in str(status_command[2]):
-                    self.apache_status.set_text('Inactive')
+                    os.system('service apache2 restart')
+                    status_command = os.popen('service apache2 status').readlines()
+                    if 'running' in str(status_command[2]):
+                        self.apache_status.set_text('Active')
+                    elif 'dead' in str(status_command[2]):
+                        self.apache_status.set_text('Inactive')
+            except:
+                if 'sudo' not in os.popen('sudo /opt/lampp/lampp status').readlines()[0]:
+                    os.popen('sudo /opt/lampp/lampp reloadapache')
+                    status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
+                    if 'Apache is not running' in str(status_command[1]):
+                        self.apache_status.set_text('Inactive')
+                    elif 'Apache is running' in str(status_command[1]):
+                        self.apache_status.set_text('Active')
         except:
-            os.popen('sudo /opt/lampp/lampp reloadapache')
-            status_command  = os.popen('opt/lampp/lampp status').readlines()
-            if 'Apache is not running' in str(status_command[1]):
-                self.apache_status.set_text('Inactive')
-            elif 'Apache is running' in str(status_command[1]):
-                self.apache_status.set_text('Active')
+            self.apache_status.set_text('Cannot connect')
 
 
 ########################################### MYSQSL BUTTONS ##################################################
 
 #mysql start button WORKING
     def on_button_m_start_clicked(self, *args):
-
         try:
-            if 'Cannot run program' not in os.popen('service mysql status').readlines()[0]:
-                os.system('service mysql start')
-                status_command  = os.popen('service mysql status').readlines()
-                if 'dead' in str(status_command[2]):
-                    self.mysql_status.set_text('Inactive')
-                elif 'running' in str(status_command[2]):
-                    self.mysql_status.set_text('Active')
+
+            try:
+                if 'Cannot run program' not in os.popen('service mysql status').readlines()[0]:
+                    os.system('service mysql start')
+                    status_command  = os.popen('service mysql status').readlines()
+                    if 'dead' in str(status_command[2]):
+                        self.mysql_status.set_text('Inactive')
+                    elif 'running' in str(status_command[2]):
+                        self.mysql_status.set_text('Active')
+            except:
+                if 'sudo' not in os.popen('sudo /opt/lampp/lampp status').readlines()[0]:
+                    os.popen('sudo /opt/lampp/lampp startmysql')
+                    status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
+                    if 'MySQL is not running' in str(status_command[2]):
+                        self.mysql_status.set_text('Inactive')
+                    elif 'MySQL is running' in str(status_command[2]):
+                        self.mysql_status.set_text('Active')
         except:
-            os.popen('sudo /opt/lampp/lampp startmysql')
-            status_command  = os.popen('opt/lampp/lampp status').readlines()
-            if 'MySQL is not running' in str(status_command[2]):
-                self.mysql_status.set_text('Inactive')
-            elif 'MySQL is running' in str(status_command[2]):
-                self.mysql_status.set_text('Active')
-
-
+            self.mysql_status.set_text('Cannot connect')
 
 
 #mysql stop button WORKING
     def on_button_m_stop_clicked(self, *args):
         try:
-            if 'Cannot run program' not in os.popen('service mysql status').readlines()[0]:
-                os.system('service mysql stop')
-                status_command  = os.popen('service mysql status').readlines()
+            try:
+                if 'Cannot run program' not in os.popen('service mysql status').readlines()[0]:
+                    os.system('service mysql stop')
+                    status_command  = os.popen('service mysql status').readlines()
 
-                if 'running' in str(status_command[2]):
-                    self.mysql_status.set_text('Active')
-                elif 'dead' in str(status_command[2]):
-                    self.mysql_status.set_text('Inactive')
+                    if 'running' in str(status_command[2]):
+                        self.mysql_status.set_text('Active')
+                    elif 'dead' in str(status_command[2]):
+                        self.mysql_status.set_text('Inactive')
+                    else:
+                        self.mysql_status.set_text('Cannot connect')
+            except:
+                if 'sudo' not in os.popen('sudo /opt/lampp/lampp status').readlines()[0]:
+                    os.popen('sudo /opt/lampp/lampp stopmysql')
+                    status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
+                    if 'MySQL is not running' in str(status_command[2]):
+                        self.mysql_status.set_text('Inactive')
+                    elif 'MySQL is running' in str(status_command[2]):
+                        self.mysql_status.set_text('Active')
         except:
-            os.popen('sudo /opt/lampp/lampp stopmysql')
-            status_command  = os.popen('opt/lampp/lampp status').readlines()
-            if 'MySQL is not running' in str(status_command[2]):
-                self.mysql_status.set_text('Inactive')
-            elif 'MySQL is running' in str(status_command[2]):
-                self.mysql_status.set_text('Active')
+            self.mysql_status.set_text('Cannot connect')
 
             
 #restart mysql button
     def on_button_m_restart_clicked(self, *args):
         try:
-            if 'Cannot run program' not in os.popen('service mysql status').readlines()[0]:
-                os.system('service mysql restart')
-                status_command = os.popen('service mysql status').readlines()
-                if 'running' in str(status_command[2]):
-                    self.mysql_status.set_text('Active')
-                elif 'dead' in str(status_command[2]):
+            try:
+                if 'Cannot run program' not in os.popen('service mysql status').readlines()[0]:
+                    os.system('service mysql restart')
+                    status_command = os.popen('service mysql status').readlines()
+                    if 'running' in str(status_command[2]):
+                        self.mysql_status.set_text('Active')
+                    elif 'dead' in str(status_command[2]):
+                        self.mysql_status.set_text('Inactive')
+
+            except:
+                os.popen('sudo /opt/lampp/lampp reloadmysql')
+                status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
+                if 'MySQL is not running' in str(status_command[2]):
                     self.mysql_status.set_text('Inactive')
+                elif 'MySQL is running' in str(status_command[2]):
+                    self.mysql_status.set_text('Active')
         except:
-            os.popen('sudo /opt/lampp/lampp reloadmysql')
-            status_command  = os.popen('opt/lampp/lampp status').readlines()
-            if 'MySQL is not running' in str(status_command[2]):
-                self.mysql_status.set_text('Inactive')
-            elif 'MySQL is running' in str(status_command[2]):
-                self.mysql_status.set_text('Active')
+            self.mysql_status.set_text('Cannot connect')
 
 ########################################## ProFTPD BUTTON ################################################    
 
 #start ProFTPD button
     def on_button_p_start_clicked(self, *args):
-
-        os.popen('sudo /opt/lampp/lampp startftp')
-        status_command = os.popen('sudo /opt/lampp/lampp status').readlines()
-        if 'ProFTPD is deactivated' in str(status_command[3]) or 'ProFTPD is not running' in str(status_command[3]):
-            self.proftp_status.set_text('Inactive')
-        elif 'ProFTPD is running' in str(status_command[3]):
-            self.proftp_status.set_text('Active')
+        try:
+            if 'sudo' not in os.popen('sudo /opt/lampp/lampp status').readlines()[0]:
+                os.popen('sudo /opt/lampp/lampp startftp')
+                status_command = os.popen('sudo /opt/lampp/lampp status').readlines()
+                if 'ProFTPD is deactivated' in str(status_command[3]) or 'ProFTPD is not running' in str(status_command[3]):
+                    self.proftp_status.set_text('Inactive')
+                elif 'ProFTPD is running' in str(status_command[3]):
+                    self.proftp_status.set_text('Active')
+        except:
+            self.proftp_status.set_text('Cannot connect')
     
 #stop ProFTPD button    
     def on_button_p_stop_clicked(self, *args):
-
-        os.popen('sudo /opt/lampp/lampp stopftp')
-        status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
-        if 'ProFTPD is deactivated' in str(status_command[3]) or 'ProFTPD is not running' in str(status_command[3]):
-            self.proftp_status.set_text('Inactive')
-        elif 'ProFTPD is running' in str(status_command[3]):
-            self.proftp_status.set_text('Active')
+        try:
+            if 'sudo' not in os.popen('sudo /opt/lampp/lampp status').readlines()[0]:
+                os.popen('sudo /opt/lampp/lampp stopftp')
+                status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
+                if 'ProFTPD is deactivated' in str(status_command[3]) or 'ProFTPD is not running' in str(status_command[3]):
+                    self.proftp_status.set_text('Inactive')
+                elif 'ProFTPD is running' in str(status_command[3]):
+                    self.proftp_status.set_text('Active')
+        except:
+            self.proftp_status.set_text('Cannot connect')
 
 #restart ProFTPD button    
     def on_button_p_restart_clicked(self, *args):
-
-        os.popen('sudo /opt/lampp/lampp reloadftp')
-        os.popen('sudo /opt/lampp/lampp startftp')
-        status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
-        if 'ProFTPD is deactivated' in str(status_command[3]) or 'ProFTPD is not running' in str(status_command[3]):
-            self.proftp_status.set_text('Inactive')
-        elif 'ProFTPD is running' in str(status_command[3]):
-            self.proftp_status.set_text('Active')
+        try:
+            if 'sudo' not in os.popen('sudo /opt/lampp/lampp status').readlines()[0]:
+                os.popen('sudo /opt/lampp/lampp reloadftp')
+                os.popen('sudo /opt/lampp/lampp startftp')
+                status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
+                if 'ProFTPD is deactivated' in str(status_command[3]) or 'ProFTPD is not running' in str(status_command[3]):
+                    self.proftp_status.set_text('Inactive')
+                elif 'ProFTPD is running' in str(status_command[3]):
+                    self.proftp_status.set_text('Active')
+        except:
+            self.proftp_status.set_text('Cannot connect')
 
 ##########################################################################################################
 
@@ -332,33 +371,12 @@ class Handler(object):
                 self.proftp_status.set_text('Active')
         
 
-
-
-
 ###########################################################
 
 # install lampp button
-#     def on_install_lampp_clicked(self, *args):
-#         install_script = '''sudo apt install apache2 -y &&
-#                         sensible-browser localhost &&
-#                         sudo apt install mariadb-server -y &&
-#                         sudo apt install mariadb-client -y &&
-#                         sudo apt install php7 php7-fpm php7-gd php7-curl php7-mysql libapache2-mod-php7 - y &&
-#                         sudo service apache2 restart &&
-#                         sudo a2enmod rewrite -y &&
-#                         sudo sudo service apache2 restart &&
-#                         sudo apt install php-imagick php-phpseclib php-gettext php7.*-imap php7.*-zip php7.*-xml php7.*-mbstring php7.*-bz2 php7.*-intl -y &&
-#                         sudo service apache2 restart &&
-#                         wget https://files.phpmyadmin.net/phpMyAdmin/4.9.7/phpMyAdmin-4.9.7-all-languages.zip -y &&
-#                         sudo apt install unzip -y &&
-#                         unzip phpMyAdmin-4.9.7-all-languages.zip -y &&
-#                         sudo mv phpMyAdmin-4.9.7-all-languages /usr/share/phpmyadmin -y &&
-#                         sudo chown -R www-data:www-data /usr/share/phpmyadmin -y &&
-#                         sudo mkdir -p /var/lib/phpmyadmin/tmp -y &&
-#                         sudo chown www-data:www-data /var/lib/phpmyadmin/tmp -y &&
-#                         sudo service apache2 reload &&
-#                         sensible-browser http://localhost/phpmyadmin'''
-#         os.system('./install.sh')
+    def on_install_lampp_clicked(self, *args):
+        os.system('sudo ./install.sh')
+#########################################################
 
 builder.connect_signals(Handler())
 window = builder.get_object('main_window')
@@ -366,5 +384,3 @@ window.show_all()
 
 if __name__ == '__main__':
     Gtk.main()
-
-

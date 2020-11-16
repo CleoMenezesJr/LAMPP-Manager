@@ -11,10 +11,11 @@
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkButton" id="install_lampp">
-            <property name="label" translatable="yes">Install Lampp (soon)</property>
+            <property name="label" translatable="yes">Install LAMPP</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_install_lampp_clicked" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
