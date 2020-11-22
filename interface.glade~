@@ -56,32 +56,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">3</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="log_mysql">
-            <property name="label" translatable="yes">Log Mysql</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <signal name="clicked" handler="on_log_mysql_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
             <property name="position">4</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">5</property>
           </packing>
         </child>
         <child>
@@ -95,7 +70,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">6</property>
+            <property name="position">5</property>
           </packing>
         </child>
       </object>
@@ -161,7 +136,7 @@
                 <property name="label" translatable="yes">MySQL</property>
               </object>
               <packing>
-                <property name="left_attach">1</property>
+                <property name="left_attach">0</property>
                 <property name="top_attach">2</property>
               </packing>
             </child>
@@ -178,7 +153,7 @@
                 <signal name="clicked" handler="on_button_a_stop_clicked" swapped="no"/>
               </object>
               <packing>
-                <property name="left_attach">4</property>
+                <property name="left_attach">3</property>
                 <property name="top_attach">1</property>
               </packing>
             </child>
@@ -195,7 +170,7 @@
                 <signal name="clicked" handler="on_button_m_stop_clicked" swapped="no"/>
               </object>
               <packing>
-                <property name="left_attach">4</property>
+                <property name="left_attach">3</property>
                 <property name="top_attach">2</property>
               </packing>
             </child>
@@ -212,7 +187,7 @@
                 <signal name="clicked" handler="on_button_a_start_clicked" swapped="no"/>
               </object>
               <packing>
-                <property name="left_attach">3</property>
+                <property name="left_attach">2</property>
                 <property name="top_attach">1</property>
               </packing>
             </child>
@@ -229,7 +204,7 @@
                 <signal name="clicked" handler="on_button_m_start_clicked" swapped="no"/>
               </object>
               <packing>
-                <property name="left_attach">3</property>
+                <property name="left_attach">2</property>
                 <property name="top_attach">2</property>
               </packing>
             </child>
@@ -240,7 +215,7 @@
                 <property name="valign">center</property>
               </object>
               <packing>
-                <property name="left_attach">2</property>
+                <property name="left_attach">1</property>
                 <property name="top_attach">1</property>
               </packing>
             </child>
@@ -251,7 +226,7 @@
                 <property name="valign">center</property>
               </object>
               <packing>
-                <property name="left_attach">2</property>
+                <property name="left_attach">1</property>
                 <property name="top_attach">2</property>
               </packing>
             </child>
@@ -262,7 +237,7 @@
                 <property name="label" translatable="yes">Apache</property>
               </object>
               <packing>
-                <property name="left_attach">1</property>
+                <property name="left_attach">0</property>
                 <property name="top_attach">1</property>
               </packing>
             </child>
@@ -278,7 +253,7 @@
                 </attributes>
               </object>
               <packing>
-                <property name="left_attach">1</property>
+                <property name="left_attach">0</property>
                 <property name="top_attach">0</property>
               </packing>
             </child>
@@ -289,7 +264,7 @@
                 <property name="valign">center</property>
               </object>
               <packing>
-                <property name="left_attach">3</property>
+                <property name="left_attach">2</property>
                 <property name="top_attach">0</property>
               </packing>
             </child>
@@ -300,7 +275,7 @@
                 <property name="valign">center</property>
               </object>
               <packing>
-                <property name="left_attach">5</property>
+                <property name="left_attach">4</property>
                 <property name="top_attach">0</property>
               </packing>
             </child>
@@ -314,7 +289,7 @@
                 </attributes>
               </object>
               <packing>
-                <property name="left_attach">4</property>
+                <property name="left_attach">3</property>
                 <property name="top_attach">0</property>
               </packing>
             </child>
@@ -325,7 +300,7 @@
                 <property name="label" translatable="yes">.</property>
               </object>
               <packing>
-                <property name="left_attach">7</property>
+                <property name="left_attach">6</property>
                 <property name="top_attach">2</property>
               </packing>
             </child>
@@ -336,7 +311,7 @@
                 <property name="valign">center</property>
               </object>
               <packing>
-                <property name="left_attach">6</property>
+                <property name="left_attach">5</property>
                 <property name="top_attach">1</property>
               </packing>
             </child>
@@ -347,7 +322,7 @@
                 <property name="valign">center</property>
               </object>
               <packing>
-                <property name="left_attach">6</property>
+                <property name="left_attach">5</property>
                 <property name="top_attach">2</property>
               </packing>
             </child>
@@ -361,7 +336,7 @@
                 </attributes>
               </object>
               <packing>
-                <property name="left_attach">7</property>
+                <property name="left_attach">6</property>
                 <property name="top_attach">0</property>
               </packing>
             </child>
@@ -378,7 +353,7 @@
                 <signal name="clicked" handler="on_button_a_restart_clicked" swapped="no"/>
               </object>
               <packing>
-                <property name="left_attach">5</property>
+                <property name="left_attach">4</property>
                 <property name="top_attach">1</property>
               </packing>
             </child>
@@ -395,8 +370,33 @@
                 <signal name="clicked" handler="on_button_m_restart_clicked" swapped="no"/>
               </object>
               <packing>
-                <property name="left_attach">5</property>
+                <property name="left_attach">4</property>
                 <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="apache_status">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">.</property>
+                <attributes>
+                  <attribute name="style" value="normal"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="left_attach">6</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+              </object>
+              <packing>
+                <property name="left_attach">2</property>
+                <property name="top_attach">4</property>
               </packing>
             </child>
             <child>
@@ -418,17 +418,6 @@
               </object>
               <packing>
                 <property name="left_attach">4</property>
-                <property name="top_attach">4</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSeparator">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">center</property>
-              </object>
-              <packing>
-                <property name="left_attach">5</property>
                 <property name="top_attach">4</property>
               </packing>
             </child>
@@ -448,7 +437,7 @@
                 </style>
               </object>
               <packing>
-                <property name="left_attach">3</property>
+                <property name="left_attach">2</property>
                 <property name="top_attach">5</property>
               </packing>
             </child>
@@ -465,7 +454,7 @@
                 <signal name="clicked" handler="on_button_stop_all_clicked" swapped="no"/>
               </object>
               <packing>
-                <property name="left_attach">4</property>
+                <property name="left_attach">3</property>
                 <property name="top_attach">5</property>
               </packing>
             </child>
@@ -482,7 +471,7 @@
                 <signal name="clicked" handler="on_button_restart_all_clicked" swapped="no"/>
               </object>
               <packing>
-                <property name="left_attach">5</property>
+                <property name="left_attach">4</property>
                 <property name="top_attach">5</property>
               </packing>
             </child>
@@ -493,7 +482,7 @@
                 <property name="label" translatable="yes">ProFTPd</property>
               </object>
               <packing>
-                <property name="left_attach">1</property>
+                <property name="left_attach">0</property>
                 <property name="top_attach">3</property>
               </packing>
             </child>
@@ -510,7 +499,7 @@
                 <signal name="clicked" handler="on_button_p_start_clicked" swapped="no"/>
               </object>
               <packing>
-                <property name="left_attach">3</property>
+                <property name="left_attach">2</property>
                 <property name="top_attach">3</property>
               </packing>
             </child>
@@ -527,7 +516,7 @@
                 <signal name="clicked" handler="on_button_p_stop_clicked" swapped="no"/>
               </object>
               <packing>
-                <property name="left_attach">4</property>
+                <property name="left_attach">3</property>
                 <property name="top_attach">3</property>
               </packing>
             </child>
@@ -544,7 +533,7 @@
                 <signal name="clicked" handler="on_button_p_restart_clicked" swapped="no"/>
               </object>
               <packing>
-                <property name="left_attach">5</property>
+                <property name="left_attach">4</property>
                 <property name="top_attach">3</property>
               </packing>
             </child>
@@ -555,81 +544,31 @@
                 <property name="label" translatable="yes">.</property>
               </object>
               <packing>
-                <property name="left_attach">7</property>
-                <property name="top_attach">3</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSeparator">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="valign">center</property>
-              </object>
-              <packing>
-                <property name="left_attach">2</property>
-                <property name="top_attach">3</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSeparator">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="valign">center</property>
-              </object>
-              <packing>
                 <property name="left_attach">6</property>
                 <property name="top_attach">3</property>
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="apache_status">
+              <object class="GtkSeparator">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">.</property>
-                <attributes>
-                  <attribute name="style" value="normal"/>
-                </attributes>
+                <property name="valign">center</property>
               </object>
               <packing>
-                <property name="left_attach">7</property>
-                <property name="top_attach">1</property>
+                <property name="left_attach">1</property>
+                <property name="top_attach">3</property>
               </packing>
             </child>
             <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
+              <object class="GtkSeparator">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="valign">center</property>
+              </object>
+              <packing>
+                <property name="left_attach">5</property>
+                <property name="top_attach">3</property>
+              </packing>
             </child>
             <child>
               <placeholder/>

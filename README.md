@@ -87,6 +87,6 @@ MIT
 
 ---
 
-> LinkedIn[Cleo-menezes-jr](https://www.linkedin.com/in/cleo-menezes-jr/) &nbsp;&middot;&nbsp;
+> LinkedIn [Cleo-menezes-jr](https://www.linkedin.com/in/cleo-menezes-jr/) &nbsp;&middot;&nbsp;
 > GitHub [CleoMenezes](https://github.com/CleoMenezes) &nbsp;&middot;&nbsp;
-
+> GitHub [@Menemezis](https://twitter.com/Menemezis) &nbsp;&middot;&nbsp;

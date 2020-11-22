@@ -1,0 +1,9 @@
+[Desktop Entry]
+#Encoding=UTF-8
+Name=LAMPP Manager
+Comment=A simple LAMPP manager designed to automate all the work.
+Exec=sudo /opt/LAMPP-Manager/LAMPP-Manager.sh
+Icon=/opt/LAMPP-Manager/icon.png
+Categories=Application
+Type=Application
+Terminal=true
