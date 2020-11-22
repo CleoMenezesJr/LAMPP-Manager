@@ -36,7 +36,7 @@
         </child>
         <child>
           <object class="GtkButton" id="open_directory">
-            <property name="label" translatable="yes">Open directory</property>
+            <property name="label" translatable="yes">Open Directory</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -61,7 +61,7 @@
         </child>
         <child>
           <object class="GtkButton" id="log_mysql">
-            <property name="label" translatable="yes">Log Mysql</property>
+            <property name="label" translatable="yes">MySQL Logs</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -594,24 +594,6 @@
                 <property name="left_attach">7</property>
                 <property name="top_attach">1</property>
               </packing>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
             </child>
             <child>
               <placeholder/>
