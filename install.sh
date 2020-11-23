@@ -207,6 +207,10 @@ sensible-browser http://localhost/phpmyadmin
 echo '';
 echo '';
 sleep 4;
+sudo apt-get install vsftpd
+echo '';
+echo '';
+sleep 4;
 echo '#################### Lets set permission to html folder. ####################';
 sudo chmod 777 -R /var/www/html;
 echo '';
