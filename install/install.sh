@@ -51,7 +51,8 @@ sudo apt install php php-fpm php-gd php-curl php-mysql libapache2-mod-php -y;
 sleep 3;
 echo 'Check if PHP has been installed correctly';
 sleep 2;
-wget --------------------------------------------
+wget https://github.com/CleoMenezes/LAMPP-Manager/blob/master/configuration%20files/info.php;
+sudo mv info.php /var/www/html/
 sensible-browser http://localhost/info.php
 echo ; echo ; echo
 echo '>> I suppose you will also need optimized settings for Wordpress.';
@@ -75,7 +76,7 @@ echo ; echo ; echo
 echo '#################### Optimal settings in the php.ini file. ####################';
 sleep 3;
 echo ; echo ; echo
-wget --------------------------------------
+wget https://github.com/CleoMenezes/LAMPP-Manager/blob/master/configuration%20files/000-default.conf
 sudo mv 000-default.conf /etc/apache2/sites-available/
 echo ; echo ; echo
 echo '#################### Lets install phpMyAdmin. ####################';
@@ -106,10 +107,10 @@ echo ; echo ; echo
 sudo chown -R www-data:www-data /usr/share/phpmyadmin;
 echo ; echo ; echo
 echo -e '>> It is ideal that you create the phpMyAdmin database and assign it to our user as in the example below. You can do later:\n\nsudo mysql -u root -p\nCREATE DATABASE phpmyadmin;\nGRANT ALL PRIVILEGES ON phpmyadmin.* TO your_username;\n FLUSH PRIVILEGES;.';
-sleep 7;
+sleep 4;
 echo ; echo ; echo
-wget ----------------------------------------------
-sudo mv phpmyadmin.conf phpmyadmin.conf;
+wget https://github.com/CleoMenezes/LAMPP-Manager/blob/master/configuration%20files/phpmyadmin.conf
+sudo mv phpmyadmin.conf /etc/apache2/conf-available/;
 echo ; echo ; echo
 sleep 3;
 echo '>> Lets enable the snippet for the configuration';
