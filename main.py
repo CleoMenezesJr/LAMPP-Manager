@@ -335,6 +335,8 @@ class Handler(object):
                     self.mysql_img_status.set_from_icon_name('emblem-default', 1)
         except:
             self.mysql_status.set_text('Cannot connect')
+            self.mysql_img_status.set_from_icon_name('emblem-important', 1)
+
 
 ########################################## ProFTPD BUTTON ################################################    
 
@@ -359,7 +361,7 @@ class Handler(object):
 
         except:
             self.proftp_status.set_text('Cannot connect')
-            self.ftp_img_status.set_from_icon_name('emblem-default', 1)
+            self.ftp_img_status.set_from_icon_name('emblem-important', 1)
     
 #stop ProFTPD button    
     def on_button_p_stop_clicked(self, *args):
@@ -375,6 +377,7 @@ class Handler(object):
                     self.ftp_img_status.set_from_icon_name('emblem-default', 1)
         except:
             self.proftp_status.set_text('Cannot connect')
+            self.ftp_img_status.set_from_icon_name('emblem-important', 1)
 
 #restart ProFTPD button    
     def on_button_p_restart_clicked(self, *args):
@@ -391,7 +394,7 @@ class Handler(object):
                     self.ftp_img_status.set_from_icon_name('emblem-default', 1)
         except:
             self.proftp_status.set_text('Cannot connect')
-            self.ftp_img_status.set_from_icon_name('emblem-default', 1)
+            self.ftp_img_status.set_from_icon_name('emblem-important', 1)
 
 ##########################################################################################################
 
@@ -522,7 +525,7 @@ class Handler(object):
 
 # install lampp button
     def on_install_lampp_clicked(self, *args):
-        os.system('sudo ./install.sh')
+        os.popen('cd install; ./Installer')
 #########################################################
 
 builder.connect_signals(Handler())
