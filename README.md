@@ -13,13 +13,13 @@
     A simple LAMPP manager designed to automate all the work <br>
     <img alt="GitHub stars" src="https://img.shields.io/github/stars/CleoMenezes/LAMPP-Manager?style=social">
     <img alt="GitHub followers" src="https://img.shields.io/github/followers/CleoMenezes?label=Follow%20me%20%3A%29&style=social">
-    <a href="https://github.com/CleoMenezes/LAMPP-Manager/releases/tag/v0.0.1">
+    <a href="https://github.com/CleoMenezes/LAMPP-Manager/releases/tag/v0.0.2">
     <img src="https://img.shields.io/github/downloads/CleoMenezes/LAMPP-Manager/total"
         alt="Download" /></a>
 </h2>
 <h1 align="center">
 
-![screenshot](Media/demo.gif)
+![screenshot](Media/demo2.gif)
 
 </h1>
 
@@ -48,7 +48,12 @@ When opening LAMPP Manager, a terminal will first appear asking for your root pa
 
 ## Installation of LAMPP
 Although there is a Bitmani installer that could do this manually, I recommend using the script I prepared.
-Several times I had problems both using Bitmani's XAMPP both by terminal and with LAMPP Manager. If you want to fully enjoy without headaches, use the installer found in the options tab.
+Several times I had problems both using Bitmani's XAMPP both by terminal and with LAMPP Manager. If you want to fully enjoy without headaches, use the installer found in the options tab.<br>
+<h1 align="center">
+
+![screenshot](Media/install-demo.gif)
+
+</h1>
 </p>
 <br>
 
@@ -57,11 +62,11 @@ Several times I had problems both using Bitmani's XAMPP both by terminal and wit
 <br>
 <h1 align="center">
   <p align="center">Pop!_OS</p>
-  <img align="center" src="Media/scpop.png"> <br>
+  <img align="center" src="Media/scpop2.png"> <br>
   <p align="center">Ubuntu</p>
-  <img align="center" src="Media/scut.png"> <br>
-  <p align="center">KDE Plasma</p>
-  <img align="center" src="Media/sckde.png"> <br>
+  <img align="center" src="Media/scut2.png"> <br>
+  <p align="center">KDE Neon</p>
+  <img align="center" src="Media/sckde2.png"> <br>
 </h1>
 
 
@@ -89,4 +94,5 @@ MIT
 
 > LinkedIn [Cleo-menezes-jr](https://www.linkedin.com/in/cleo-menezes-jr/) &nbsp;&middot;&nbsp;
 > GitHub [CleoMenezes](https://github.com/CleoMenezes) &nbsp;&middot;&nbsp;
-> GitHub [@Menemezis](https://twitter.com/Menemezis) &nbsp;&middot;&nbsp;
+> Twitter [@Menemezis](https://twitter.com/Menemezis) &nbsp;&middot;&nbsp;
+> Instagram [@cleo.menemezes](https://www.instagram.com/cleo.menemezes/) &nbsp;&middot;&nbsp;
