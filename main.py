@@ -43,20 +43,28 @@ class Handler(object):
 ###########################################################################
 
 #putting current apache's port
-        apache_port_file = open('/etc/apache2/ports.conf', 'r')
-        text_file = apache_port_file.readlines()
-        #b_port_status = self.apache_port.get_label()
-        self.apache_port.set_text(str(text_file[4].replace('Listen', '').strip()))
+        try:
+            status_command_a  = os.popen('service apache2 status').readlines()
+            if status_command_a[0][0] == '●':
+                apache_port_file = open('/etc/apache2/ports.conf', 'r')
+                text_file = apache_port_file.readlines()
+                #b_port_status = self.apache_port.get_label()
+                self.apache_port.set_text(str(text_file[4].replace('Listen', '').strip()))
+                print('gostosinha')
+        except:
+            pass
+            
 
-#putting current apache's port
-        mysql_port_file = open('/etc/mysql/mariadb.conf.d/50-server.cnf', 'r')
-        text_file = mysql_port_file.readlines()
-        self.mysql_port.set_text(text_file[18].replace('#port', '').strip().replace('= ', ''))
-        
+#putting current mysqls port
+        try:
+            status_command_m  = os.popen('service mysql status').readlines()
+            if status_command_a[0][0] == '●':
+                mysql_port_file = open('/etc/mysql/mariadb.conf.d/50-server.cnf', 'r')
+                text_file = mysql_port_file.readlines()
+                self.mysql_port.set_text(text_file[18].replace('#port', '').strip().replace('= ', ''))
+        except:
+            pass
 
-
-
-        
 
 
 
@@ -136,7 +144,7 @@ class Handler(object):
         if str(p_first_status) != 'Active' or str(p_first_status) != 'Inactive':
             try:
 
-                status_command = os.popen('sudo /opt/lampp/lampp status').readlines()
+                status_command = os.popen('pkexec /opt/lampp/lampp status').readlines()
                 if 'ProFTPD is deactivated' in str(status_command[3]) or 'ProFTPD is not running' in str(status_command[3]):
                     self.proftp_status.set_text('Inactive')
                     self.ftp_img_status.set_from_icon_name('emblem-unreadable', 1)
