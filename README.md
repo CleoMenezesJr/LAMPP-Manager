@@ -13,7 +13,7 @@
     A simple LAMPP manager designed to automate all the work <br>
     <img alt="GitHub stars" src="https://img.shields.io/github/stars/CleoMenezes/LAMPP-Manager?style=social">
     <img alt="GitHub followers" src="https://img.shields.io/github/followers/CleoMenezes?label=Follow%20me%20%3A%29&style=social">
-    <a href="https://github.com/CleoMenezes/LAMPP-Manager/releases/tag/v0.0.2">
+    <a href="https://github.com/CleoMenezes/LAMPP-Manager/releases/tag/v0.0.3">
     <img src="https://img.shields.io/github/downloads/CleoMenezes/LAMPP-Manager/total"
         alt="Download" /></a>
 </h2>
@@ -41,7 +41,7 @@ Maybe for those who are used to doing everything for the terminal, they don't ca
 
 # ⚈ How to get started
 <p>
-Download the deb version available here <a href="#">https://github.com/CleoMenezes/LAMPP-Manager/releases/tag/v0.0.2</a>), it is currently available only in deb. In the future I think about migrating to Flatpak. Install via your package installer probably just by opening the file. Install it as you normally do with any other program.
+Download the deb version available <a href="https://github.com/CleoMenezes/LAMPP-Manager/releases/">here</a>, it is currently available only in deb. In the future I think about migrating to Flatpak. Install via your package installer probably just by opening the file. Install it as you normally do with any other program.
 When the installation is finished, no other process is necessary.
 
 When opening LAMPP Manager, a terminal will first appear asking for your root password. This is so that you can start and stop any service without being asked for a password between each action. Enter the password and minimize the terminal if you want.
@@ -62,7 +62,7 @@ Several times I had problems both using Bitmani's XAMPP both by terminal and wit
 <br>
 <h1 align="center">
   <p align="center">Pop!_OS</p>
-  <img align="center" src="Media/scpop2.png"> <br>
+  <img align="center" src="Media/scpop3.png"> <br>
   <p align="center">Ubuntu</p>
   <img align="center" src="Media/scut2.png"> <br>
   <p align="center">KDE Neon</p>
