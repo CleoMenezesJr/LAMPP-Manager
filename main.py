@@ -452,7 +452,7 @@ class Handler(object):
                 status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
                 if 'ProFTPD is deactivated' in str(status_command[3]) or 'ProFTPD is not running' in str(status_command[3]):
                     self.ftpd_status.set_text('Inactive')
-                    self.ftp_img_status.set_from_icon_name('emblem-unreadable', 1)
+                    self.ftpd_img_status.set_from_icon_name('emblem-unreadable', 1)
                 elif 'ProFTPD is running' in str(status_command[3]):
                     self.ftpd_status.set_text('Active')
                     self.ftpd_img_status.set_from_icon_name('emblem-default', 1)
