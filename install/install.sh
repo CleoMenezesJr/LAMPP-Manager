@@ -70,7 +70,7 @@ wget https://files.phpmyadmin.net/phpMyAdmin/4.9.7/phpMyAdmin-4.9.7-all-language
 echo ; echo ; echo
 unzip phpMyAdmin-4.9.7-all-languages.zip
 echo ; echo ; echo
-sudo mv phpMyAdmin-4.9.7-all-languages /usr/share/phpmyadmin
+sudo mv -f phpMyAdmin-4.9.7-all-languages /usr/share/phpmyadmin
 echo ; echo ; echo
 sudo rm phpMyAdmin-4.9.7-all-languages.zip
 echo ; echo ; echo
