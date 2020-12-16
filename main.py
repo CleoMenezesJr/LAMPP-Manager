@@ -47,8 +47,8 @@ class Handler(object):
         try:
             status_command_a  = os.popen('service apache2 status').readlines()
             if status_command_a[0][0] == '●':
-                apache_port_file = open('/etc/apache2/ports.conf', 'r')
-                text_file = apache_port_file.readlines()
+                with open('/etc/apache2/ports.conf', 'r') as apache_port_file: #thx utrape
+                    text_file = apache_port_file.readlines()
                 #b_port_status = self.apache_port.get_label()
                 self.apache_port.set_text(str(text_file[4].replace('Listen', '').strip()))
         except:
@@ -59,8 +59,8 @@ class Handler(object):
         try:
             status_command_m  = os.popen('service mysql status').readlines()
             if status_command_a[0][0] == '●':
-                mysql_port_file = open('/etc/mysql/mariadb.conf.d/50-server.cnf', 'r')
-                text_file = mysql_port_file.readlines()
+                with open('/etc/mysql/mariadb.conf.d/50-server.cnf', 'r') as mysql_port_file:
+                    text_file = mysql_port_file.readlines()
                 self.mysql_port.set_text(text_file[18].replace('#port', '').strip().replace('= ', ''))
         except:
             pass
