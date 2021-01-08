@@ -38,6 +38,8 @@ class Handler(object):
         self.apache_img_status = builder.get_object('apache_img_status')
         self.mysql_img_status = builder.get_object('mysql_img_status')
         self.ftpd_img_status = builder.get_object('ftpd_img_status')
+        self.localhost = builder.get_object('localhost')
+        self.phpmyadmin = builder.get_object('phpmyadmin')
 
 
 
@@ -462,28 +464,35 @@ class Handler(object):
 
 ##########################################################################################################
 
-#open directory button
+#open directory buttonv
     def on_open_directory_clicked(self, *args):
         try:
-            os.popen('nautilus /var/www/html')
+            os.popen('cd  /var/www/html; current_user=`logname`; sudo -u ${current_user} nautilus .')
         except:
-            os.popen('nemo /var/www/html')
+            os.popen('cd  /var/www/html; current_user=`logname`; sudo -u ${current_user} nemo .')
         else:
-            os.popen('dolphin /var/www/html')
+            os.popen('cd  /var/www/html; current_user=`logname`; sudo -u ${current_user} dolphin')
 
-#Open directory logs apache 
+#Open directory logs apache .
     def on_log_mysql_clicked(self,*args):
         try:
-            os.popen('nautilus /var/log/mysql')
+            os.popen('cd  /var/log/mysql; current_user=`logname`; sudo -u ${current_user} nautilus')
         except:
-            os.popen('nemo /var/log/mysql')
+            os.popen('cd  /var/log/mysql; current_user=`logname`; sudo -u ${current_user} nemo')
         else:
-            os.popen('dolphin /var/log/mysql')
+            os.popen('cd  /var/log/mysql; current_user=`logname`; sudo -u ${current_user} dolphin')
 
 # open about
     def on_about_clicked(self, *args):
-        os.popen('sensible-browser https://github.com/CleoMenezes/LAMPP-Manager/')
+        os.popen('current_user=`logname`; sudo -u ${current_user} sensible-browser https://github.com/CleoMenezes/LAMPP-Manager/')
 
+# open localhost
+    def on_localhost_clicked(self, *args):
+        os.popen('current_user=`logname`; sudo -u ${current_user} sensible-browser http://localhost/')
+
+#open phpmyadmin
+    def on_phpmyadmin_clicked(self, *args):
+        os.popen('current_user=`logname`; sudo -u ${current_user} sensible-browser http://localhost/phpmyadmin/')
 
 #start all button
     def on_button_start_all_clicked(self, *args):

@@ -5,11 +5,12 @@
   <object class="GtkListStore" id="liststore1"/>
   <object class="GtkPopover" id="popover1">
     <property name="can_focus">False</property>
+    <property name="halign">center</property>
+    <property name="valign">center</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
         <child>
           <object class="GtkButton" id="install_lampp">
             <property name="label" translatable="yes">Install LAMPP</property>
@@ -44,6 +45,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="relief">none</property>
             <signal name="clicked" handler="on_open_directory_clicked" swapped="no"/>
           </object>
           <packing>
@@ -64,12 +66,13 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="log_mysql">
-            <property name="label" translatable="yes">MySQL Logs</property>
+          <object class="GtkButton" id="localhost">
+            <property name="label" translatable="yes">Localhost</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <signal name="clicked" handler="on_log_mysql_clicked" swapped="no"/>
+            <property name="relief">none</property>
+            <signal name="clicked" handler="on_localhost_clicked" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -89,12 +92,13 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton">
-            <property name="label" translatable="yes">About</property>
+          <object class="GtkButton" id="phpmyadmin">
+            <property name="label" translatable="yes">phpMyAdmin</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <signal name="clicked" handler="on_about_clicked" swapped="no"/>
+            <property name="relief">none</property>
+            <signal name="clicked" handler="on_phpmyadmin_clicked" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -102,17 +106,68 @@
             <property name="position">6</property>
           </packing>
         </child>
+        <child>
+          <object class="GtkSeparator">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">7</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="log_mysql">
+            <property name="label" translatable="yes">MySQL Logs</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="relief">none</property>
+            <signal name="clicked" handler="on_log_mysql_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">9</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">10</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="label" translatable="yes">About</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="relief">none</property>
+            <signal name="clicked" handler="on_about_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">11</property>
+          </packing>
+        </child>
       </object>
     </child>
   </object>
   <object class="GtkWindow" id="main_window">
     <property name="can_focus">False</property>
-    <property name="has_tooltip">True</property>
     <property name="resizable">False</property>
     <property name="window_position">center</property>
     <property name="default_width">400</property>
     <property name="default_height">110</property>
-    <property name="gravity">north-east</property>
+    <property name="gravity">center</property>
     <signal name="destroy" handler="on_main_window_destroy" swapped="no"/>
     <child type="titlebar">
       <object class="GtkHeaderBar" id="l.">
@@ -130,7 +185,7 @@
                 <property name="can_focus">True</property>
                 <property name="focus_on_click">False</property>
                 <property name="receives_default">True</property>
-                <property name="direction">none</property>
+                <property name="align_widget">main_window</property>
                 <property name="popover">popover1</property>
                 <child>
                   <placeholder/>
@@ -170,23 +225,6 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="button_a_stop">
-                <property name="label" translatable="yes">Stop</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="margin_left">4</property>
-                <property name="margin_right">4</property>
-                <property name="margin_top">2</property>
-                <property name="margin_bottom">2</property>
-                <signal name="clicked" handler="on_button_a_stop_clicked" swapped="no"/>
-              </object>
-              <packing>
-                <property name="left_attach">4</property>
-                <property name="top_attach">1</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkButton" id="button_m_stop">
                 <property name="label" translatable="yes">Stop</property>
                 <property name="visible">True</property>
@@ -194,8 +232,8 @@
                 <property name="receives_default">True</property>
                 <property name="margin_left">4</property>
                 <property name="margin_right">4</property>
-                <property name="margin_top">2</property>
-                <property name="margin_bottom">2</property>
+                <property name="margin_top">3</property>
+                <property name="margin_bottom">3</property>
                 <signal name="clicked" handler="on_button_m_stop_clicked" swapped="no"/>
               </object>
               <packing>
@@ -211,8 +249,8 @@
                 <property name="receives_default">True</property>
                 <property name="margin_left">4</property>
                 <property name="margin_right">4</property>
-                <property name="margin_top">2</property>
-                <property name="margin_bottom">2</property>
+                <property name="margin_top">3</property>
+                <property name="margin_bottom">3</property>
                 <signal name="clicked" handler="on_button_a_start_clicked" swapped="no"/>
               </object>
               <packing>
@@ -228,8 +266,8 @@
                 <property name="receives_default">True</property>
                 <property name="margin_left">4</property>
                 <property name="margin_right">4</property>
-                <property name="margin_top">2</property>
-                <property name="margin_bottom">2</property>
+                <property name="margin_top">3</property>
+                <property name="margin_bottom">3</property>
                 <signal name="clicked" handler="on_button_m_start_clicked" swapped="no"/>
               </object>
               <packing>
@@ -352,8 +390,8 @@
                 <property name="receives_default">True</property>
                 <property name="margin_left">4</property>
                 <property name="margin_right">4</property>
-                <property name="margin_top">2</property>
-                <property name="margin_bottom">2</property>
+                <property name="margin_top">3</property>
+                <property name="margin_bottom">3</property>
                 <signal name="clicked" handler="on_button_a_restart_clicked" swapped="no"/>
               </object>
               <packing>
@@ -369,8 +407,8 @@
                 <property name="receives_default">True</property>
                 <property name="margin_left">4</property>
                 <property name="margin_right">4</property>
-                <property name="margin_top">2</property>
-                <property name="margin_bottom">2</property>
+                <property name="margin_top">3</property>
+                <property name="margin_bottom">3</property>
                 <signal name="clicked" handler="on_button_m_restart_clicked" swapped="no"/>
               </object>
               <packing>
@@ -419,8 +457,8 @@
                 <property name="receives_default">True</property>
                 <property name="margin_left">4</property>
                 <property name="margin_right">4</property>
-                <property name="margin_top">2</property>
-                <property name="margin_bottom">2</property>
+                <property name="margin_top">3</property>
+                <property name="margin_bottom">3</property>
                 <signal name="clicked" handler="on_button_start_all_clicked" swapped="no"/>
                 <style>
                   <class name="suggested-action"/>
@@ -439,8 +477,8 @@
                 <property name="receives_default">True</property>
                 <property name="margin_left">4</property>
                 <property name="margin_right">4</property>
-                <property name="margin_top">2</property>
-                <property name="margin_bottom">2</property>
+                <property name="margin_top">3</property>
+                <property name="margin_bottom">3</property>
                 <signal name="clicked" handler="on_button_stop_all_clicked" swapped="no"/>
               </object>
               <packing>
@@ -456,8 +494,8 @@
                 <property name="receives_default">True</property>
                 <property name="margin_left">4</property>
                 <property name="margin_right">4</property>
-                <property name="margin_top">2</property>
-                <property name="margin_bottom">2</property>
+                <property name="margin_top">3</property>
+                <property name="margin_bottom">3</property>
                 <signal name="clicked" handler="on_button_restart_all_clicked" swapped="no"/>
               </object>
               <packing>
@@ -484,8 +522,8 @@
                 <property name="receives_default">True</property>
                 <property name="margin_left">4</property>
                 <property name="margin_right">4</property>
-                <property name="margin_top">2</property>
-                <property name="margin_bottom">2</property>
+                <property name="margin_top">3</property>
+                <property name="margin_bottom">3</property>
                 <signal name="clicked" handler="on_button_p_start_clicked" swapped="no"/>
               </object>
               <packing>
@@ -501,8 +539,8 @@
                 <property name="receives_default">True</property>
                 <property name="margin_left">4</property>
                 <property name="margin_right">4</property>
-                <property name="margin_top">2</property>
-                <property name="margin_bottom">2</property>
+                <property name="margin_top">3</property>
+                <property name="margin_bottom">3</property>
                 <signal name="clicked" handler="on_button_p_stop_clicked" swapped="no"/>
               </object>
               <packing>
@@ -518,8 +556,8 @@
                 <property name="receives_default">True</property>
                 <property name="margin_left">4</property>
                 <property name="margin_right">4</property>
-                <property name="margin_top">2</property>
-                <property name="margin_bottom">2</property>
+                <property name="margin_top">3</property>
+                <property name="margin_bottom">3</property>
                 <signal name="clicked" handler="on_button_p_restart_clicked" swapped="no"/>
               </object>
               <packing>
@@ -686,6 +724,23 @@
               <packing>
                 <property name="left_attach">8</property>
                 <property name="top_attach">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button_a_stop">
+                <property name="label" translatable="yes">Stop</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="margin_left">4</property>
+                <property name="margin_right">4</property>
+                <property name="margin_top">3</property>
+                <property name="margin_bottom">3</property>
+                <signal name="clicked" handler="on_button_a_stop_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="left_attach">4</property>
+                <property name="top_attach">1</property>
               </packing>
             </child>
             <child>
