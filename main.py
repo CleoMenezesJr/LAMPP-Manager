@@ -60,7 +60,7 @@ class Handler(object):
         #putting current mysqls port
         try:
             status_command_m  = os.popen('service mysql status').readlines()
-            if status_command_a[0][0] == '●':
+            if status_command_m[0][0] == '●':
                 with open('/etc/mysql/mariadb.conf.d/50-server.cnf', 'r') as mysql_port_file:
                     text_file = mysql_port_file.readlines()
                 self.mysql_port.set_text(text_file[18].replace('#port', '').strip().replace('= ', ''))
@@ -75,92 +75,26 @@ class Handler(object):
 
 #apache start button WORKING
     def on_button_a_start_clicked(self, *args):
-        try:
-            try:
-                if 'Cannot run program' not in os.popen('service apache2 status').readlines()[0]:            
-                    os.system('service apache2 start')
-                    status_command = os.popen('service apache2 status').readlines()  
-                    if 'dead' in str(status_command[2]):
-                        self.apache_status.set_text('Inactive')
-                        self.apache_img_status.set_from_icon_name('emblem-unreadable', 1)
-                    elif 'running' in str(status_command[2]):
-                        self.apache_status.set_text('Active')
-                        self.apache_img_status.set_from_icon_name('emblem-default', 1)
-            except:
-                if 'sudo' not in os.popen('sudo /opt/lampp/lampp status').readlines()[0]:
-                    os.popen('sudo /opt/lampp/lampp startapache')
-                    status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
-                    if 'Apache is not running' in str(status_command[1]):
-                        self.apache_status.set_text('Inactive')
-                        self.apache_img_status.set_from_icon_name('emblem-unreadable', 1)
-                    elif 'Apache is running' in str(status_command[1]):
-                        self.apache_status.set_text('Active')
-                        self.apache_img_status.set_from_icon_name('emblem-default', 1)
-                        
+        try:        
+            os.system('service apache2 start')
         except:
-            self.apache_status.set_text('Cannot connect')
-            self.apache_img_status.set_from_icon_name('emblem-important', 1)
+            os.popen('sudo /opt/lampp/lampp startapache')
 
 
 #apache stop button WORKING
     def on_button_a_stop_clicked(self, *args):
         try:
-            try:
-                if 'Cannot run program' not in os.popen('service apache2 status').readlines()[0]:
-                    os.system('service apache2 stop')
-                    status_command  = os.popen('service apache2 status').readlines()
-                    if 'running' in str(status_command[2]):
-                        self.apache_status.set_text('Active')
-                        self.apache_img_status.set_from_icon_name('emblem-default', 1)
-                    elif 'dead' in str(status_command[2]):
-                        self.apache_status.set_text('Inactive')
-                        self.apache_img_status.set_from_icon_name('emblem-unreadable', 1)
-                    else:
-                        self.apache_status.set_text('Cannot connect')
-                        self.apache_img_status.set_from_icon_name('emblem-important', 1)
-                        
-            except:
-                if 'sudo' not in os.popen('sudo /opt/lampp/lampp status').readlines()[0]:
-                    os.popen('sudo /opt/lampp/lampp stopapache')
-                    status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
-                    if 'Apache is not running' in str(status_command[1]):
-                        self.mysql_status.set_text('Inactive')
-                        self.apache_img_status.set_from_icon_name('emblem-unreadable', 1)
-                    elif 'Apache is running' in str(status_command[1]):
-                        self.apache_status.set_text('Active')
-                        self.apache_img_status.set_from_icon_name('emblem-default', 1)
+            os.system('service apache2 stop')
         except:
-            self.apache_status.set_text('Cannot connect')
-            self.apache_img_status.set_from_icon_name('emblem-important', 1)
+            os.popen('sudo /opt/lampp/lampp stopapache')
 
 
 #restart apache button WORKING
     def on_button_a_restart_clicked(self, *args):
         try:
-            try:
-                if 'Cannot run program' not in os.popen('service apache2 status').readlines()[0]:
-
-                    os.system('service apache2 restart')
-                    status_command = os.popen('service apache2 status').readlines()
-                    if 'running' in str(status_command[2]):
-                        self.apache_status.set_text('Active')
-                        self.apache_img_status.set_from_icon_name('emblem-default', 1)
-                    elif 'dead' in str(status_command[2]):
-                        self.apache_status.set_text('Inactive')
-                        self.apache_img_status.set_from_icon_name('emblem-unreadable', 1)
-            except:
-                if 'sudo' not in os.popen('sudo /opt/lampp/lampp status').readlines()[0]:
-                    os.popen('sudo /opt/lampp/lampp reloadapache')
-                    status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
-                    if 'Apache is not running' in str(status_command[1]):
-                        self.apache_status.set_text('Inactive')
-                        self.apache_img_status.set_from_icon_name('emblem-unreadable', 1)
-                    elif 'Apache is running' in str(status_command[1]):
-                        self.apache_status.set_text('Active')
-                        self.apache_img_status.set_from_icon_name('emblem-default', 1)
+            os.system('service apache2 restart')
         except:
-            self.apache_status.set_text('Cannot connect')
-            self.apache_img_status.set_from_icon_name('emblem-important', 1)
+            os.popen('sudo /opt/lampp/lampp reloadapache')
 
 
 ########################################### MYSQSL BUTTONS ##################################################
@@ -168,89 +102,25 @@ class Handler(object):
 #mysql start button WORKING
     def on_button_m_start_clicked(self, *args):
         try:
-
-            try:
-                if 'Cannot run program' not in os.popen('service mysql status').readlines()[0]:
-                    os.system('service mysql start')
-                    status_command  = os.popen('service mysql status').readlines()
-                    if 'dead' in str(status_command[2]):
-                        self.mysql_status.set_text('Inactive')
-                        self.mysql_img_status.set_from_icon_name('emblem-unreadable', 1)
-                    elif 'running' in str(status_command[2]):
-                        self.mysql_status.set_text('Active')
-                        self.mysql_img_status.set_from_icon_name('emblem-default', 1)
-            except:
-                if 'sudo' not in os.popen('sudo /opt/lampp/lampp status').readlines()[0]:
-                    os.popen('sudo /opt/lampp/lampp startmysql')
-                    status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
-                    if 'MySQL is not running' in str(status_command[2]):
-                        self.mysql_status.set_text('Inactive')
-                        self.mysql_img_status.set_from_icon_name('emblem-unreadable', 1)
-                    elif 'MySQL is running' in str(status_command[2]):
-                        self.mysql_status.set_text('Active')
-                        self.mysql_img_status.set_from_icon_name('emblem-default', 1)
+            os.system('service mysql start')
         except:
-            self.mysql_status.set_text('Cannot connect')
-            self.mysql_img_status.set_from_icon_name('emblem-important', 1)
+            os.popen('sudo /opt/lampp/lampp startmysql')
 
 
 #mysql stop button WORKING
     def on_button_m_stop_clicked(self, *args):
         try:
-            try:
-                if 'Cannot run program' not in os.popen('service mysql status').readlines()[0]:
-                    os.system('service mysql stop')
-                    status_command  = os.popen('service mysql status').readlines()
-
-                    if 'running' in str(status_command[2]):
-                        self.mysql_status.set_text('Active')
-                        self.mysql_img_status.set_from_icon_name('emblem-default', 1)
-                    elif 'dead' in str(status_command[2]):
-                        self.mysql_status.set_text('Inactive')
-                        self.mysql_img_status.set_from_icon_name('emblem-unreadable', 1)
-                    else:
-                        self.mysql_status.set_text('Cannot connect')
-            except:
-                if 'sudo' not in os.popen('sudo /opt/lampp/lampp status').readlines()[0]:
-                    os.popen('sudo /opt/lampp/lampp stopmysql')
-                    status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
-                    if 'MySQL is not running' in str(status_command[2]):
-                        self.mysql_status.set_text('Inactive')
-                        self.mysql_img_status.set_from_icon_name('emblem-unreadable', 1)
-                    elif 'MySQL is running' in str(status_command[2]):
-                        self.mysql_status.set_text('Active')
-                        self.mysql_img_status.set_from_icon_name('emblem-default', 1)
+            os.system('service mysql stop')
         except:
-            self.mysql_status.set_text('Cannot connect')
-            self.mysql_img_status.set_from_icon_name('emblem-important', 1)
+            os.popen('sudo /opt/lampp/lampp stopmysql')
 
             
 #restart mysql button
     def on_button_m_restart_clicked(self, *args):
         try:
-            try:
-                if 'Cannot run program' not in os.popen('service mysql status').readlines()[0]:
-                    os.system('service mysql restart')
-                    status_command = os.popen('service mysql status').readlines()
-                    if 'running' in str(status_command[2]):
-                        self.mysql_status.set_text('Active')
-                        self.mysql_img_status.set_from_icon_name('emblem-default', 1)
-                    elif 'dead' in str(status_command[2]):
-                        self.mysql_status.set_text('Inactive')
-                        self.mysql_img_status.set_from_icon_name('emblem-unreadable', 1)
-
-            except:
-                os.popen('sudo /opt/lampp/lampp reloadmysql')
-                status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
-                if 'MySQL is not running' in str(status_command[2]):
-                    self.mysql_status.set_text('Inactive')
-                    self.mysql_img_status.set_from_icon_name('emblem-unreadable', 1)
-                elif 'MySQL is running' in str(status_command[2]):
-                    self.mysql_status.set_text('Active')
-                    self.mysql_img_status.set_from_icon_name('emblem-default', 1)
+            os.system('service mysql restart')
         except:
-            self.mysql_status.set_text('Cannot connect')
-            self.mysql_img_status.set_from_icon_name('emblem-important', 1)
+            os.popen('sudo /opt/lampp/lampp reloadmysql')
 
 
 ########################################## ProFTPD BUTTON ################################################    
@@ -259,92 +129,28 @@ class Handler(object):
     def on_button_p_start_clicked(self, *args):
 
         try:
-
-            try:
-                if 'Cannot run program' not in os.popen('service vsftpd status').readlines()[0]:
-                    os.system('service vsftpd start')
-                    status_command  = os.popen('service vsftpd status').readlines()
-                    if 'dead' in str(status_command[2]):
-                        self.ftpd_status.set_text('Inactive')
-                        self.ftpd_img_status.set_from_icon_name('emblem-unreadable', 1)
-                    elif 'running' in str(status_command[2]):
-                        self.ftpd_status.set_text('Active')
-                        self.ftpd_img_status.set_from_icon_name('emblem-default', 1)
-            except:
-                if 'sudo' not in os.popen('sudo /opt/lampp/lampp status').readlines()[0]:
-                    os.popen('sudo /opt/lampp/lampp startftp')
-                    status_command = os.popen('sudo /opt/lampp/lampp status').readlines()
-                    if 'ProFTPD is deactivated' in str(status_command[3]) or 'ProFTPD is not running' in str(status_command[3]):
-                        self.ftpd_status.set_text('Inactive')
-                        self.ftpd_img_status.set_from_icon_name('emblem-unreadable', 1)
-                    elif 'ProFTPD is running' in str(status_command[3]):
-                        self.ftpd_status.set_text('Active')
-                        self.ftpd_img_status.set_from_icon_name('emblem-default', 1)
+            os.system('service vsftpd start')
         except:
-            self.ftpd_status.set_text('Cannot connect')
-            self.ftpd_img_status.set_from_icon_name('emblem-important', 1)
+            os.popen('sudo /opt/lampp/lampp startftp')
 
     
-#stop ProFTPD button    
+#stop FTPD button    
     def on_button_p_stop_clicked(self, *args):
 
         try:
-            try:
-                if 'Cannot run program' not in os.popen('service vsftpd status').readlines()[0]:
-                    os.system('service vsftpd stop')
-                    status_command  = os.popen('service vsftpd status').readlines()
-
-                    if 'running' in str(status_command[2]):
-                        self.ftpd_status.set_text('Active')
-                        self.ftpd_img_status.set_from_icon_name('emblem-default', 1)
-                    elif 'dead' in str(status_command[2]):
-                        self.ftpd_status.set_text('Inactive')
-                        self.ftpd_img_status.set_from_icon_name('emblem-unreadable', 1)
-                    else:
-                        self.ftpd_status.set_text('Cannot connect')
-            except:
-                if 'sudo' not in os.popen('sudo /opt/lampp/lampp status').readlines()[0]:
-                    os.popen('sudo /opt/lampp/lampp stopftp')
-                    status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
-                    if 'ProFTPD is deactivated' in str(status_command[3]) or 'ProFTPD is not running' in str(status_command[3]):
-                        self.ftpd_status.set_text('Inactive')
-                        self.ftpd_img_status.set_from_icon_name('emblem-unreadable', 1)
-                    elif 'ProFTPD is running' in str(status_command[3]):
-                        self.ftpd_status.set_text('Active')
-                        self.ftpd_img_status.set_from_icon_name('emblem-default', 1)
+            os.system('service vsftpd stop')
         except:
-            self.ftpd_status.set_text('Cannot connect')
-            self.ftpd_img_status.set_from_icon_name('emblem-important', 1)
+            os.popen('sudo /opt/lampp/lampp stopftp')
 
 #restart ProFTPD button    
     def on_button_p_restart_clicked(self, *args):
 
         try:
-            try:
-                if 'Cannot run program' not in os.popen('service vsftpd status').readlines()[0]:
-                    os.system('service vsftpd restart')
-                    status_command = os.popen('service vsftpd status').readlines()
-                    if 'running' in str(status_command[2]):
-                        self.ftpd_status.set_text('Active')
-                        self.ftpd_img_status.set_from_icon_name('emblem-default', 1)
-                    elif 'dead' in str(status_command[2]):
-                        self.ftpd_status.set_text('Inactive')
-                        self.ftpd_img_status.set_from_icon_name('emblem-unreadable', 1)
-
-            except:
+            os.system('service vsftpd restart')
+        except:
              if 'sudo' not in os.popen('sudo /opt/lampp/lampp status').readlines()[0]:
                 os.popen('sudo /opt/lampp/lampp reloadftp')
                 os.popen('sudo /opt/lampp/lampp startftp')
-                status_command  = os.popen('sudo /opt/lampp/lampp status').readlines()
-                if 'ProFTPD is deactivated' in str(status_command[3]) or 'ProFTPD is not running' in str(status_command[3]):
-                    self.ftpd_status.set_text('Inactive')
-                    self.ftpd_img_status.set_from_icon_name('emblem-unreadable', 1)
-                elif 'ProFTPD is running' in str(status_command[3]):
-                    self.ftpd_status.set_text('Active')
-                    self.ftpd_img_status.set_from_icon_name('emblem-default', 1)
-        except:
-            self.ftpd_status.set_text('Cannot connect')
-            self.ftpd_img_status.set_from_icon_name('emblem-important', 1)
 
 ##########################################################################################################
 
@@ -406,17 +212,15 @@ class Handler(object):
         self.on_button_m_restart_clicked()
         self.on_button_p_restart_clicked()
 
-###########################################################
-
 # install lampp button
     def on_install_lampp_clicked(self, *args):
         os.popen('cd install && for terminal in $TERMINAL x-terminal-emulator urxvt rxvt terminator Eterm aterm xterm gnome-terminal roxterm xfce4-terminal; do if which $terminal > /dev/null 2>&1; then exec $terminal --noclose -e sudo ./install.sh; fi; done')
-#########################################################
 
 #quit button
     def on_main_window_destroy(self, *args):
             Gtk.main_quit()
 
+########################ITHREAD##########################
 class CurrentServiceStatus(Handler):
     def __init__(self, *args):
         super().__init__()
