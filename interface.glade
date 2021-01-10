@@ -8,19 +8,279 @@
     <property name="halign">center</property>
     <property name="valign">center</property>
     <child>
-      <object class="GtkBox">
+      <object class="GtkGrid">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <child>
-          <object class="GtkButton" id="install_lampp">
-            <property name="label" translatable="yes">Install LAMPP</property>
+          <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <signal name="clicked" handler="on_install_lampp_clicked" swapped="no"/>
-            <style>
-              <class name="suggested-action"/>
-            </style>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkButton" id="install_lampp">
+                <property name="label" translatable="yes">Install LAMPP</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_install_lampp_clicked" swapped="no"/>
+                <style>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="open_directory">
+                <property name="label" translatable="yes">Open Directory</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="relief">none</property>
+                <signal name="clicked" handler="on_open_directory_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="localhost">
+                <property name="label" translatable="yes">Localhost</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="relief">none</property>
+                <signal name="clicked" handler="on_localhost_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">4</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">5</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="phpmyadmin">
+                <property name="label" translatable="yes">phpMyAdmin</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="relief">none</property>
+                <signal name="clicked" handler="on_phpmyadmin_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">6</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">7</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="php_info">
+                <property name="label" translatable="yes">PHP Info</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="relief">none</property>
+                <signal name="clicked" handler="on_php_info_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">8</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="log_mysql">
+                <property name="label" translatable="yes">MySQL Logs</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="relief">none</property>
+                <signal name="clicked" handler="on_log_mysql_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">10</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">11</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="about">
+                <property name="label" translatable="yes">About</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="relief">none</property>
+                <signal name="clicked" handler="on_about_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">12</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">center</property>
+            <property name="margin_top">4</property>
+            <property name="label" translatable="yes">Menu</property>
+            <attributes>
+              <attribute name="weight" value="ultrabold"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="valign">center</property>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="valign">center</property>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">center</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">center</property>
+          </object>
+          <packing>
+            <property name="left_attach">2</property>
+            <property name="top_attach">2</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkPopover" id="popover2">
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="valign">start</property>
+            <property name="margin_left">2</property>
+            <property name="margin_top">2</property>
+            <property name="margin_bottom">2</property>
+            <property name="label" translatable="yes">Change Apache Port</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -29,148 +289,99 @@
           </packing>
         </child>
         <child>
-          <object class="GtkSeparator">
+          <object class="GtkEntry" id="entry_apache_port">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can_focus">True</property>
+            <property name="halign">start</property>
+            <property name="valign">start</property>
+            <property name="margin_top">2</property>
+            <property name="margin_bottom">2</property>
+            <property name="text" translatable="yes">.</property>
+            <property name="input_purpose">number</property>
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="fill">True</property>
+            <property name="fill">False</property>
             <property name="position">1</property>
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="open_directory">
-            <property name="label" translatable="yes">Open Directory</property>
+          <object class="GtkButton" id="send_apache_port">
+            <property name="label" translatable="yes">Change</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="relief">none</property>
-            <signal name="clicked" handler="on_open_directory_clicked" swapped="no"/>
+            <property name="halign">start</property>
+            <property name="valign">start</property>
+            <property name="margin_top">2</property>
+            <property name="margin_bottom">2</property>
+            <signal name="clicked" handler="on_send_apache_port_clicked" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="fill">True</property>
+            <property name="fill">False</property>
             <property name="position">2</property>
           </packing>
         </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkPopover" id="popover3">
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
         <child>
-          <object class="GtkSeparator">
+          <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="valign">start</property>
+            <property name="margin_top">2</property>
+            <property name="margin_bottom">2</property>
+            <property name="label" translatable="yes">Change MySQL Port</property>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">3</property>
+            <property name="position">0</property>
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="localhost">
-            <property name="label" translatable="yes">Localhost</property>
+          <object class="GtkEntry" id="entry_mysql_port">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="halign">start</property>
+            <property name="valign">start</property>
+            <property name="margin_top">2</property>
+            <property name="margin_bottom">2</property>
+            <property name="text" translatable="yes">.</property>
+            <property name="input_purpose">number</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="send_mysql_port">
+            <property name="label" translatable="yes">Change</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="relief">none</property>
-            <signal name="clicked" handler="on_localhost_clicked" swapped="no"/>
+            <property name="halign">start</property>
+            <property name="valign">start</property>
+            <property name="margin_top">2</property>
+            <property name="margin_bottom">2</property>
+            <signal name="clicked" handler="on_send_mysql_port_clicked" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">4</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">5</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="phpmyadmin">
-            <property name="label" translatable="yes">phpMyAdmin</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="relief">none</property>
-            <signal name="clicked" handler="on_phpmyadmin_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">6</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">7</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="php_info">
-            <property name="label" translatable="yes">PHP Info</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="relief">none</property>
-            <signal name="clicked" handler="on_php_info_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">8</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="log_mysql">
-            <property name="label" translatable="yes">MySQL Logs</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="relief">none</property>
-            <signal name="clicked" handler="on_log_mysql_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">10</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">11</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="about">
-            <property name="label" translatable="yes">About</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="relief">none</property>
-            <signal name="clicked" handler="on_about_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">12</property>
+            <property name="fill">False</property>
+            <property name="position">2</property>
           </packing>
         </child>
       </object>
@@ -235,7 +446,7 @@
                 <property name="label" translatable="yes">MySQL</property>
               </object>
               <packing>
-                <property name="left_attach">1</property>
+                <property name="left_attach">2</property>
                 <property name="top_attach">2</property>
               </packing>
             </child>
@@ -252,7 +463,7 @@
                 <signal name="clicked" handler="on_button_m_stop_clicked" swapped="no"/>
               </object>
               <packing>
-                <property name="left_attach">4</property>
+                <property name="left_attach">5</property>
                 <property name="top_attach">2</property>
               </packing>
             </child>
@@ -269,7 +480,7 @@
                 <signal name="clicked" handler="on_button_a_start_clicked" swapped="no"/>
               </object>
               <packing>
-                <property name="left_attach">3</property>
+                <property name="left_attach">4</property>
                 <property name="top_attach">1</property>
               </packing>
             </child>
@@ -286,7 +497,7 @@
                 <signal name="clicked" handler="on_button_m_start_clicked" swapped="no"/>
               </object>
               <packing>
-                <property name="left_attach">3</property>
+                <property name="left_attach">4</property>
                 <property name="top_attach">2</property>
               </packing>
             </child>
@@ -297,7 +508,7 @@
                 <property name="valign">center</property>
               </object>
               <packing>
-                <property name="left_attach">2</property>
+                <property name="left_attach">3</property>
                 <property name="top_attach">1</property>
               </packing>
             </child>
@@ -308,7 +519,7 @@
                 <property name="valign">center</property>
               </object>
               <packing>
-                <property name="left_attach">2</property>
+                <property name="left_attach">3</property>
                 <property name="top_attach">2</property>
               </packing>
             </child>
@@ -324,7 +535,7 @@
                 </attributes>
               </object>
               <packing>
-                <property name="left_attach">1</property>
+                <property name="left_attach">2</property>
                 <property name="top_attach">0</property>
               </packing>
             </child>
@@ -335,7 +546,7 @@
                 <property name="valign">center</property>
               </object>
               <packing>
-                <property name="left_attach">3</property>
+                <property name="left_attach">4</property>
                 <property name="top_attach">0</property>
               </packing>
             </child>
@@ -346,7 +557,7 @@
                 <property name="valign">center</property>
               </object>
               <packing>
-                <property name="left_attach">5</property>
+                <property name="left_attach">6</property>
                 <property name="top_attach">0</property>
               </packing>
             </child>
@@ -360,7 +571,7 @@
                 </attributes>
               </object>
               <packing>
-                <property name="left_attach">4</property>
+                <property name="left_attach">5</property>
                 <property name="top_attach">0</property>
               </packing>
             </child>
@@ -371,7 +582,7 @@
                 <property name="label" translatable="yes">.</property>
               </object>
               <packing>
-                <property name="left_attach">7</property>
+                <property name="left_attach">8</property>
                 <property name="top_attach">2</property>
               </packing>
             </child>
@@ -382,7 +593,7 @@
                 <property name="valign">center</property>
               </object>
               <packing>
-                <property name="left_attach">6</property>
+                <property name="left_attach">7</property>
                 <property name="top_attach">1</property>
               </packing>
             </child>
@@ -393,7 +604,7 @@
                 <property name="valign">center</property>
               </object>
               <packing>
-                <property name="left_attach">6</property>
+                <property name="left_attach">7</property>
                 <property name="top_attach">2</property>
               </packing>
             </child>
@@ -410,7 +621,7 @@
                 <signal name="clicked" handler="on_button_a_restart_clicked" swapped="no"/>
               </object>
               <packing>
-                <property name="left_attach">5</property>
+                <property name="left_attach">6</property>
                 <property name="top_attach">1</property>
               </packing>
             </child>
@@ -427,19 +638,8 @@
                 <signal name="clicked" handler="on_button_m_restart_clicked" swapped="no"/>
               </object>
               <packing>
-                <property name="left_attach">5</property>
+                <property name="left_attach">6</property>
                 <property name="top_attach">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSeparator">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">center</property>
-              </object>
-              <packing>
-                <property name="left_attach">3</property>
-                <property name="top_attach">4</property>
               </packing>
             </child>
             <child>
@@ -461,6 +661,17 @@
               </object>
               <packing>
                 <property name="left_attach">5</property>
+                <property name="top_attach">4</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+              </object>
+              <packing>
+                <property name="left_attach">6</property>
                 <property name="top_attach">4</property>
               </packing>
             </child>
@@ -480,7 +691,7 @@
                 </style>
               </object>
               <packing>
-                <property name="left_attach">3</property>
+                <property name="left_attach">4</property>
                 <property name="top_attach">5</property>
               </packing>
             </child>
@@ -497,7 +708,7 @@
                 <signal name="clicked" handler="on_button_stop_all_clicked" swapped="no"/>
               </object>
               <packing>
-                <property name="left_attach">4</property>
+                <property name="left_attach">5</property>
                 <property name="top_attach">5</property>
               </packing>
             </child>
@@ -514,7 +725,7 @@
                 <signal name="clicked" handler="on_button_restart_all_clicked" swapped="no"/>
               </object>
               <packing>
-                <property name="left_attach">5</property>
+                <property name="left_attach">6</property>
                 <property name="top_attach">5</property>
               </packing>
             </child>
@@ -525,7 +736,7 @@
                 <property name="label" translatable="yes">FTPd</property>
               </object>
               <packing>
-                <property name="left_attach">1</property>
+                <property name="left_attach">2</property>
                 <property name="top_attach">3</property>
               </packing>
             </child>
@@ -542,7 +753,7 @@
                 <signal name="clicked" handler="on_button_p_start_clicked" swapped="no"/>
               </object>
               <packing>
-                <property name="left_attach">3</property>
+                <property name="left_attach">4</property>
                 <property name="top_attach">3</property>
               </packing>
             </child>
@@ -559,7 +770,7 @@
                 <signal name="clicked" handler="on_button_p_stop_clicked" swapped="no"/>
               </object>
               <packing>
-                <property name="left_attach">4</property>
+                <property name="left_attach">5</property>
                 <property name="top_attach">3</property>
               </packing>
             </child>
@@ -576,7 +787,7 @@
                 <signal name="clicked" handler="on_button_p_restart_clicked" swapped="no"/>
               </object>
               <packing>
-                <property name="left_attach">5</property>
+                <property name="left_attach">6</property>
                 <property name="top_attach">3</property>
               </packing>
             </child>
@@ -587,29 +798,29 @@
                 <property name="label" translatable="yes">.</property>
               </object>
               <packing>
+                <property name="left_attach">8</property>
+                <property name="top_attach">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="valign">center</property>
+              </object>
+              <packing>
+                <property name="left_attach">3</property>
+                <property name="top_attach">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="valign">center</property>
+              </object>
+              <packing>
                 <property name="left_attach">7</property>
-                <property name="top_attach">3</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSeparator">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="valign">center</property>
-              </object>
-              <packing>
-                <property name="left_attach">2</property>
-                <property name="top_attach">3</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSeparator">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="valign">center</property>
-              </object>
-              <packing>
-                <property name="left_attach">6</property>
                 <property name="top_attach">3</property>
               </packing>
             </child>
@@ -623,7 +834,7 @@
                 </attributes>
               </object>
               <packing>
-                <property name="left_attach">7</property>
+                <property name="left_attach">8</property>
                 <property name="top_attach">1</property>
               </packing>
             </child>
@@ -637,7 +848,7 @@
                 </attributes>
               </object>
               <packing>
-                <property name="left_attach">7</property>
+                <property name="left_attach">8</property>
                 <property name="top_attach">0</property>
               </packing>
             </child>
@@ -651,7 +862,7 @@
                 </attributes>
               </object>
               <packing>
-                <property name="left_attach">8</property>
+                <property name="left_attach">9</property>
                 <property name="top_attach">0</property>
               </packing>
             </child>
@@ -665,7 +876,7 @@
                 </attributes>
               </object>
               <packing>
-                <property name="left_attach">8</property>
+                <property name="left_attach">9</property>
                 <property name="top_attach">1</property>
               </packing>
             </child>
@@ -676,7 +887,7 @@
                 <property name="label" translatable="yes">Apache</property>
               </object>
               <packing>
-                <property name="left_attach">1</property>
+                <property name="left_attach">2</property>
                 <property name="top_attach">1</property>
               </packing>
             </child>
@@ -687,7 +898,7 @@
                 <property name="stock">gtk-missing-image</property>
               </object>
               <packing>
-                <property name="left_attach">0</property>
+                <property name="left_attach">1</property>
                 <property name="top_attach">2</property>
               </packing>
             </child>
@@ -698,7 +909,7 @@
                 <property name="stock">gtk-missing-image</property>
               </object>
               <packing>
-                <property name="left_attach">0</property>
+                <property name="left_attach">1</property>
                 <property name="top_attach">3</property>
               </packing>
             </child>
@@ -709,7 +920,7 @@
                 <property name="stock">gtk-missing-image</property>
               </object>
               <packing>
-                <property name="left_attach">0</property>
+                <property name="left_attach">1</property>
                 <property name="top_attach">1</property>
               </packing>
             </child>
@@ -723,7 +934,7 @@
                 </attributes>
               </object>
               <packing>
-                <property name="left_attach">8</property>
+                <property name="left_attach">9</property>
                 <property name="top_attach">2</property>
               </packing>
             </child>
@@ -737,7 +948,7 @@
                 </attributes>
               </object>
               <packing>
-                <property name="left_attach">8</property>
+                <property name="left_attach">9</property>
                 <property name="top_attach">3</property>
               </packing>
             </child>
@@ -754,20 +965,132 @@
                 <signal name="clicked" handler="on_button_a_stop_clicked" swapped="no"/>
               </object>
               <packing>
-                <property name="left_attach">4</property>
+                <property name="left_attach">5</property>
                 <property name="top_attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkMenuButton">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="focus_on_click">False</property>
+                <property name="receives_default">True</property>
+                <property name="halign">start</property>
+                <property name="valign">start</property>
+                <property name="align_widget">main_window</property>
+                <property name="direction">left</property>
+                <property name="popover">popover2</property>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="left_attach">10</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkMenuButton">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="focus_on_click">False</property>
+                <property name="receives_default">True</property>
+                <property name="halign">start</property>
+                <property name="valign">start</property>
+                <property name="align_widget">main_window</property>
+                <property name="direction">left</property>
+                <property name="popover">popover3</property>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="left_attach">10</property>
+                <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkMenuButton">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="focus_on_click">False</property>
+                <property name="receives_default">True</property>
+                <property name="halign">start</property>
+                <property name="valign">start</property>
+                <property name="align_widget">main_window</property>
+                <property name="direction">left</property>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="left_attach">10</property>
+                <property name="top_attach">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="valign">center</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="valign">center</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="valign">center</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">3</property>
               </packing>
             </child>
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
                 <property name="pixbuf">../../bitmap.png</property>
               </object>
               <packing>
-                <property name="left_attach">8</property>
+                <property name="left_attach">0</property>
                 <property name="top_attach">5</property>
               </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
             </child>
             <child>
               <placeholder/>
