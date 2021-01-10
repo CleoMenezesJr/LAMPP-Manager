@@ -18,7 +18,7 @@ label.set_alignment(0, 0)
 wnd.add(scroll)
 scroll.add(label)
 wnd.show_all()
-sub_proc = Popen("./install.sh", stdout=PIPE, shell=True)
+sub_proc = Popen("sudo ./install.sh", stdout=PIPE, shell=True)
 sub_outp = ""
 
 def on_main_window_destroy(self, *args):

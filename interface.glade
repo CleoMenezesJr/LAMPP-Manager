@@ -118,6 +118,21 @@
           </packing>
         </child>
         <child>
+          <object class="GtkButton" id="php_info">
+            <property name="label" translatable="yes">PHP Info</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="relief">none</property>
+            <signal name="clicked" handler="on_php_info_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">8</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkButton" id="log_mysql">
             <property name="label" translatable="yes">MySQL Logs</property>
             <property name="visible">True</property>
@@ -129,7 +144,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">9</property>
+            <property name="position">10</property>
           </packing>
         </child>
         <child>
@@ -140,11 +155,11 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">10</property>
+            <property name="position">11</property>
           </packing>
         </child>
         <child>
-          <object class="GtkButton">
+          <object class="GtkButton" id="about">
             <property name="label" translatable="yes">About</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
@@ -155,7 +170,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">11</property>
+            <property name="position">12</property>
           </packing>
         </child>
       </object>
@@ -744,7 +759,15 @@
               </packing>
             </child>
             <child>
-              <placeholder/>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="pixbuf">../../bitmap.png</property>
+              </object>
+              <packing>
+                <property name="left_attach">8</property>
+                <property name="top_attach">5</property>
+              </packing>
             </child>
             <child>
               <placeholder/>
