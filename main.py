@@ -44,32 +44,16 @@ class Handler(object):
         self.localhost = builder.get_object('localhost')
         self.phpmyadmin = builder.get_object('phpmyadmin')
         self.php_info = builder.get_object('php_info')
+        self.entry_apache_port = builder.get_object('entry_apache_port')
+        self.send_apache_port = builder.get_object('send_apache_port')
+        self.send_mysql_port = builder.get_object('send_mysql_port')
+        self.entry_mysql_port = builder.get_object('entry_mysql_port')
 
-#putting current apache's port
-        try:
-            status_command_a  = os.popen('service apache2 status').readlines()
-            if status_command_a[0][0] == '●':
-                with open('/etc/apache2/ports.conf', 'r') as apache_port_file: #thx utrape
-                    text_file = apache_port_file.readlines()
-                #b_port_status = self.apache_port.get_label()
-                self.apache_port.set_text(str(text_file[4].replace('Listen', '').strip()))
-        except:
-            pass
-            
+#get apache port
+        with open('/etc/apache2/ports.conf', 'r') as apache_port_file: 
+            text_file = apache_port_file.readlines()
+        self.current_apache_port = str(text_file[4].replace('Listen', '').strip())
 
-        #putting current mysqls port
-        try:
-            status_command_m  = os.popen('service mysql status').readlines()
-            if status_command_m[0][0] == '●':
-                with open('/etc/mysql/mariadb.conf.d/50-server.cnf', 'r') as mysql_port_file:
-                    text_file = mysql_port_file.readlines()
-                self.mysql_port.set_text(text_file[18].replace('#port', '').strip().replace('= ', ''))
-        except:
-            pass
-
-
-        #putting current ftp's port
-        self.ftp_port.set_text('2121')  #Thats the default
 
 ################################### APACHE BUTTONS ##############################################
 
@@ -174,19 +158,17 @@ class Handler(object):
 
 # open about
     def on_about_clicked(self, *args):
-        os.popen('current_user=`logname`; sudo -u ${current_user} sensible-browser https://github.com/CleoMenezes/LAMPP-Manager/')
+        os.popen('sudo -u `logname` sensible-browser  https://github.com/CleoMenezes/LAMPP-Manager/ ; exit')
 
 # open localhost
     def on_localhost_clicked(self, *args):
-        os.popen('current_user=`logname`; sudo -u ${current_user} sensible-browser http://localhost/')
-
+        os.popen(f'sudo -u `logname` sensible-browser http://localhost:{self.current_apache_port}/ ; exit')
 #open phpmyadmin
     def on_phpmyadmin_clicked(self, *args):
-        os.popen('current_user=`logname`; sudo -u ${current_user} sensible-browser http://localhost/phpmyadmin/')
-    
+        os.popen(f'sudo -u `logname` sensible-browser http://localhost:{self.current_apache_port}/phpmyadmin/ ; exit')
 # open info.php
     def on_php_info_clicked(self, *args):
-        os.popen('current_user=`logname`; sudo -u ${current_user} sensible-browser http://localhost/info.php')
+        os.popen(f'sudo -u `logname` sensible-browser http://localhost:{self.current_apache_port}/info.php ; exit')
 
 #start all button
     def on_button_start_all_clicked(self, *args):
@@ -197,7 +179,7 @@ class Handler(object):
 
 
 #stop all button
-    def on_button_stop_all_clicked(self, *args):
+    def on_button_stop_all_clicked(self, *args):    
 
         self.on_button_a_stop_clicked()
         self.on_button_m_stop_clicked()
@@ -219,6 +201,23 @@ class Handler(object):
 #quit button
     def on_main_window_destroy(self, *args):
             Gtk.main_quit()
+
+
+
+# change apache port
+    def on_send_apache_port_clicked(self, *args):
+        current_port = self.current_apache_port 
+        new_port = self.entry_apache_port.get_text()
+        os.popen(f'sudo sed -i "5 s/{current_port}/{new_port}/" /etc/apache2/ports.conf')
+
+# change apache port
+    def on_send_mysql_port_clicked(self, *args):
+        with open('/etc/mysql/mariadb.conf.d/50-server.cnf', 'r') as mysql_port_file:
+            text_file = mysql_port_file.readlines()
+        current_port = str(text_file[18].replace('#port', '').strip().replace('= ', ''))
+        new_port = self.entry_mysql_port.get_text()
+        os.popen(f'sudo sed -i "5 s/{current_port}/{new_port}/" /etc/mysql/mariadb.conf.d/50-server.cnf')
+
 
 ########################ITHREAD##########################
 class CurrentServiceStatus(Handler):
@@ -326,7 +325,54 @@ class CurrentServiceStatus(Handler):
                 except IndexError:
                     self.ftpd_status.set_text('Not found')
                     self.ftpd_img_status.set_from_icon_name('emblem-important', 1)
-            sleep(2)
+
+#putting current apache's port
+            try:
+                status_command_a  = os.popen('service apache2 status').readlines()
+                if status_command_a[0][0] == '●':
+                    with open('/etc/apache2/ports.conf', 'r') as apache_port_file: 
+                        text_file = apache_port_file.readlines()
+                    self.apache_port.set_text(str(text_file[4].replace('Listen', '').strip()))
+
+                    current_a = str(text_file[4].replace('Listen', '').strip())
+                    current_b = str(self.entry_apache_port.get_text())
+                    if current_b == str("."):
+                        self.entry_apache_port .set_text(str(text_file[4].replace('Listen', '').strip()))
+                    elif current_b == current_a:
+                        pass
+
+            except:        
+                pass
+                
+
+#putting current mysqls port
+            try:
+                status_command_m  = os.popen('service mysql status').readlines()
+                if status_command_m[0][0] == '●':
+                    with open('/etc/mysql/mariadb.conf.d/50-server.cnf', 'r') as mysql_port_file:
+                        text_file = mysql_port_file.readlines()
+                    self.mysql_port.set_text(text_file[18].replace('#port', '').strip().replace('= ', ''))
+
+                    current_a = str(text_file[18].replace('#port', '').strip().replace('= ', ''))
+                    current_b = str(self.entry_mysql_port.get_text())
+
+
+                    if current_b == str("."):
+                        self.entry_mysql_port.set_text(text_file[18].replace('#port', '').strip().replace('= ', ''))
+                    elif current_b == current_a:
+                        pass
+
+
+            except:
+                pass
+
+
+#putting current ftp's port
+            self.ftp_port.set_text('2121')  #Thats the default 
+
+            sleep(5)
+
+
 a = CurrentServiceStatus
 thread = threading.Thread(target=a)
 thread.daemon = True
