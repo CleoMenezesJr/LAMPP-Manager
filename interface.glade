@@ -1067,7 +1067,7 @@
                 <property name="can_focus">False</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
-                <property name="pixbuf">../../bitmap.png</property>
+                <property name="pixbuf">Media/bitmap.png</property>
               </object>
               <packing>
                 <property name="left_attach">0</property>
