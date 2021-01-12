@@ -9,7 +9,7 @@ sudo a2enmod rewrite
 sudo service apache2 restart
 cd  /opt/LAMPP-Manager/configuration\ files
 sudo mv -f 000-default.conf /etc/apache2/sites-available/
-sudo apt install phpmyadmin -y
+sudo apt install phpmyadmin php-mbstring php-zip php-gd php-json php-curl -y
 cd  /opt/LAMPP-Manager/configuration\ files
 sudo mv apache2.conf /etc/apache2/
 sudo ln -s /usr/share/phpmyadmin /var/www/
