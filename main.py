@@ -3,7 +3,6 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 import subprocess
 import os
-from gi.repository import Notify
 from time import sleep
 import threading
 
@@ -50,7 +49,8 @@ class Handler(object):
         self.send_apache_port = builder.get_object('send_apache_port')
         self.send_mysql_port = builder.get_object('send_mysql_port')
         self.entry_mysql_port = builder.get_object('entry_mysql_port')
-
+        
+    
 # Quit button #
     def on_main_window_destroy(self, *args):
             Gtk.main_quit()
@@ -336,6 +336,7 @@ main_thread = CurrentServiceStatus
 thread = threading.Thread(target=main_thread)
 thread.daemon = True
 thread.start()
+
     
 builder.connect_signals(Handler())
 window = builder.get_object('main_window')

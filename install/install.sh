@@ -26,8 +26,7 @@ sudo apt install apache2 apache2-bin -y
 sudo chmod 777 -R /var/www/html
 sudo service apache2 restart
 sudo apt-get install vsftpd
-sudo apt install libnotify-bin
-sudo apt install python-gi gir1.2-notify-0.7
+udo apt-get install gir1.2-appindicator3
 
 echo 'Restart LAMPP Manager and Enjoy!'
 exit
