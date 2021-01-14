@@ -3,6 +3,176 @@
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkListStore" id="liststore1"/>
+  <object class="GtkMenu" id="menu1">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+  </object>
+  <object class="GtkPopover" id="popover2">
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="valign">start</property>
+            <property name="margin_left">2</property>
+            <property name="margin_top">2</property>
+            <property name="margin_bottom">2</property>
+            <property name="label" translatable="yes">Change Apache Port</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="entry_apache_port">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="halign">start</property>
+            <property name="valign">start</property>
+            <property name="margin_top">2</property>
+            <property name="margin_bottom">2</property>
+            <property name="text" translatable="yes">.</property>
+            <property name="input_purpose">number</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="send_apache_port">
+            <property name="label" translatable="yes">Change</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="halign">start</property>
+            <property name="valign">start</property>
+            <property name="margin_top">2</property>
+            <property name="margin_bottom">2</property>
+            <signal name="clicked" handler="on_send_apache_port_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkPopover" id="popover3">
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="valign">start</property>
+            <property name="margin_top">2</property>
+            <property name="margin_bottom">2</property>
+            <property name="label" translatable="yes">Change MySQL Port</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="entry_mysql_port">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="halign">start</property>
+            <property name="valign">start</property>
+            <property name="margin_top">2</property>
+            <property name="margin_bottom">2</property>
+            <property name="text" translatable="yes">.</property>
+            <property name="input_purpose">number</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="send_mysql_port">
+            <property name="label" translatable="yes">Change</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="halign">start</property>
+            <property name="valign">start</property>
+            <property name="margin_top">2</property>
+            <property name="margin_bottom">2</property>
+            <signal name="clicked" handler="on_send_mysql_port_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkPopover" id="popover4">
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkGrid">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <object class="GtkButton" id="install_lampp">
+            <property name="label" translatable="yes">Instal NOW</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="margin_left">2</property>
+            <property name="margin_right">2</property>
+            <property name="margin_top">2</property>
+            <property name="margin_bottom">2</property>
+            <signal name="clicked" handler="on_install_lampp_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="uninstall_lampp">
+            <property name="label" translatable="yes">Uninstall</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="margin_left">2</property>
+            <property name="margin_right">2</property>
+            <property name="margin_top">2</property>
+            <property name="margin_bottom">2</property>
+            <signal name="clicked" handler="on_uninstall_lampp_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
   <object class="GtkPopover" id="popover1">
     <property name="can_focus">False</property>
     <property name="halign">center</property>
@@ -16,15 +186,24 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
-              <object class="GtkButton" id="install_lampp">
-                <property name="label" translatable="yes">Install LAMPP</property>
+              <object class="GtkMenuButton">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="focus_on_click">False</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_install_lampp_clicked" swapped="no"/>
-                <style>
-                  <class name="suggested-action"/>
-                </style>
+                <property name="align_widget">main_window</property>
+                <property name="popover">popover4</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Install LAMPP</property>
+                    <property name="width_chars">13</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                </child>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -214,17 +393,6 @@
           <object class="GtkSeparator">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="valign">center</property>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">3</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="halign">center</property>
           </object>
           <packing>
@@ -244,145 +412,33 @@
           </packing>
         </child>
         <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkPopover" id="popover2">
-    <property name="can_focus">False</property>
-    <child>
-      <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkLabel">
+          <object class="GtkSeparator">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="halign">start</property>
-            <property name="valign">start</property>
-            <property name="margin_left">2</property>
-            <property name="margin_top">2</property>
-            <property name="margin_bottom">2</property>
-            <property name="label" translatable="yes">Change Apache Port</property>
+            <property name="valign">center</property>
           </object>
           <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
+            <property name="left_attach">1</property>
+            <property name="top_attach">3</property>
           </packing>
         </child>
         <child>
-          <object class="GtkEntry" id="entry_apache_port">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="halign">start</property>
-            <property name="valign">start</property>
-            <property name="margin_top">2</property>
-            <property name="margin_bottom">2</property>
-            <property name="text" translatable="yes">.</property>
-            <property name="input_purpose">number</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="position">1</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
-          <object class="GtkButton" id="send_apache_port">
-            <property name="label" translatable="yes">Change</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="halign">start</property>
-            <property name="valign">start</property>
-            <property name="margin_top">2</property>
-            <property name="margin_bottom">2</property>
-            <signal name="clicked" handler="on_send_apache_port_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkPopover" id="popover3">
-    <property name="can_focus">False</property>
-    <child>
-      <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">start</property>
-            <property name="valign">start</property>
-            <property name="margin_top">2</property>
-            <property name="margin_bottom">2</property>
-            <property name="label" translatable="yes">Change MySQL Port</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
-          <object class="GtkEntry" id="entry_mysql_port">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="halign">start</property>
-            <property name="valign">start</property>
-            <property name="margin_top">2</property>
-            <property name="margin_bottom">2</property>
-            <property name="text" translatable="yes">.</property>
-            <property name="input_purpose">number</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="position">1</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
-          <object class="GtkButton" id="send_mysql_port">
-            <property name="label" translatable="yes">Change</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="halign">start</property>
-            <property name="valign">start</property>
-            <property name="margin_top">2</property>
-            <property name="margin_bottom">2</property>
-            <signal name="clicked" handler="on_send_mysql_port_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="position">2</property>
-          </packing>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
         </child>
       </object>
     </child>
@@ -436,6 +492,7 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">center</property>
+            <property name="valign">center</property>
             <property name="margin_bottom">10</property>
             <property name="row_homogeneous">True</property>
             <property name="column_homogeneous">True</property>
@@ -1067,6 +1124,7 @@
                 <property name="can_focus">False</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
+                <property name="margin_top">5</property>
                 <property name="pixbuf">Media/bitmap.png</property>
               </object>
               <packing>
