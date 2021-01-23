@@ -50,27 +50,22 @@ class Handler(object):
         self.send_mysql_port = builder.get_object('send_mysql_port')
         self.entry_mysql_port = builder.get_object('entry_mysql_port')
         
-    
 # Quit button #
     def on_main_window_destroy(self, *args):
-            Gtk.main_quit()
-
+        Gtk.main_quit()
 # Getting services port #
     def get_apache_port(self, *args):
-        try:
-            with open('/etc/apache2/ports.conf', 'r') as apache_port_file: 
-                text_file = apache_port_file.readlines()
-            self.current_apache_port = str(text_file[4].replace('Listen', '').strip())
-            return self.current_apache_port
-        except:
-            return ''
+        with open('/etc/apache2/ports.conf', 'r') as apache_port_file: 
+            text_file = apache_port_file.readlines()
+        self.current_apache_port = str(text_file[4].replace('Listen', '').strip())
+        return self.current_apache_port
+
 
     def get_mysql_port(self, *args):
         with open('/etc/mysql/mariadb.conf.d/50-server.cnf', 'r') as mysql_port_file:
             text_file = mysql_port_file.readlines()
         self.current_mysql_port = str(text_file[18].replace('#port', '').strip().replace('= ', ''))
         return self.current_mysql_port
-
 
 # Validating services #
     def validate_apache(self, *args):
@@ -85,21 +80,124 @@ class Handler(object):
         self.status_command_f = subprocess.run('service vsftpd status', stdout=subprocess.PIPE, text=True, shell=True)
         return str(self.status_command_f.stdout)
 
+################################ Notification area ################################
+
+#  Services Status #
+
+    def apache_notify(self, status):
+
+        a_status = status
+
+        if 'active (running)' in self.validate_apache():
+            new_port = 'Active'
+        elif 'inactive (dead)' in self.validate_apache():
+            new_port = 'Inactive'
+
+        if  (self.current_port != new_port) and (new_port == "Active") and (a_status != 'restart'):
+            subprocess.run('notify-send -i /Media/bitmap.png -u low "Apache Status" "Has been activated"', stdout=subprocess.PIPE, text=True, shell=True)
+
+        elif (self.current_port == new_port) and (new_port == "Active") and (a_status != 'restart'):
+            subprocess.run('notify-send -i /Media/bitmap.png -u low "Apache Status" "Service was already activated"', stdout=subprocess.PIPE, text=True, shell=True)
+
+        elif (self.current_port != new_port) and (new_port == "Inactive") and (a_status != 'restart'):
+            subprocess.run('notify-send -i /Media/bitmap.png -u low "Apache Status" "Has been disabled"', stdout=subprocess.PIPE, text=True, shell=True)
+            
+        elif (self.current_port == new_port) and (new_port == "Inactive") and (a_status != 'restart'):
+            subprocess.run('notify-send -i /Media/bitmap.png -u low "Apache Status" "Service was already disabled"', stdout=subprocess.PIPE, text=True, shell=True)
+
+        elif (a_status == 'restart') and (new_port == "Active"):
+            subprocess.run('notify-send -i /Media/bitmap.png -u low "Apache Status" "Service restarted"', stdout=subprocess.PIPE, text=True, shell=True)
+
+        elif (a_status == 'restart') and (new_port == "Inactive"):
+            subprocess.run('notify-send -i /Media/bitmap.png -u low "Apache Status" "Could not restart"', stdout=subprocess.PIPE, text=True, shell=True)
+
+        else:
+            subprocess.run('notify-send -i /Media/bitmap.png -u low "Apache Status" "Cannot connet"', stdout=subprocess.PIPE, text=True, shell=True)
+
+    def mysql_notify(self, status):
+
+        a_mysql = status
+
+        if 'active (running)' in self.validate_mysql():
+            new_port = 'Active'
+        elif 'inactive (dead)' in self.validate_mysql():
+            new_port = 'Inactive'
+
+        if  (self.current_port != new_port) and (new_port == "Active") and (a_mysql != 'restart'):
+            subprocess.run('notify-send -i /Media/bitmap.png -u low "MySQL Status" "Has been activated"', stdout=subprocess.PIPE, text=True, shell=True)
+
+        elif (self.current_port == new_port) and (new_port == "Active") and (a_mysql != 'restart'):
+            subprocess.run('notify-send -i /Media/bitmap.png -u low "MySQL Status" "Service was already activated"', stdout=subprocess.PIPE, text=True, shell=True)
+
+        elif (self.current_port != new_port) and (new_port == "Inactive") and (a_mysql != 'restart'):
+            subprocess.run('notify-send -i /Media/bitmap.png -u low "MySQL Status" "Has been disabled"', stdout=subprocess.PIPE, text=True, shell=True)
+            
+        elif (self.current_port == new_port) and (new_port == "Inactive") and (a_mysql != 'restart'):
+            subprocess.run('notify-send -i /Media/bitmap.png -u low "MySQL Status" "Service was already disabled"', stdout=subprocess.PIPE, text=True, shell=True)
+
+        elif (a_mysql == 'restart') and (new_port == "Active"):
+            subprocess.run('notify-send -i /Media/bitmap.png -u low "MySQL Status" "Service restarted"', stdout=subprocess.PIPE, text=True, shell=True)
+
+        elif (a_mysql == 'restart') and (new_port == "Inactive"):
+            subprocess.run('notify-send -i /Media/bitmap.png -u low "MySQL Status" "Could not restart"', stdout=subprocess.PIPE, text=True, shell=True)
+
+        else:
+            subprocess.run('notify-send -i /Media/bitmap.png -u low "MySQL Status" "Cannot connet"', stdout=subprocess.PIPE, text=True, shell=True)
+
+    def ftp_notify(self, status):
+
+            f_status = status
+
+            if 'active (running)' in self.validate_ftp():
+                new_port = 'Active'
+            elif 'inactive (dead)' in self.validate_ftp():
+                new_port = 'Inactive'
+
+            if  (self.current_port != new_port) and (new_port == "Active") and (f_status != 'restart'):
+                subprocess.run('notify-send -i /Media/bitmap.png -u low "FTPd Status" "Has been activated"', stdout=subprocess.PIPE, text=True, shell=True)
+
+            elif (self.current_port == new_port) and (new_port == "Active") and (f_status != 'restart'):
+                subprocess.run('notify-send -i /Media/bitmap.png -u low "FTPd Status" "Service was already activated"', stdout=subprocess.PIPE, text=True, shell=True)
+
+            elif (self.current_port != new_port) and (new_port == "Inactive") and (f_status != 'restart'):
+                subprocess.run('notify-send -i /Media/bitmap.png -u low "FTPd Status" "Has been disabled"', stdout=subprocess.PIPE, text=True, shell=True)
+                
+            elif (self.current_port == new_port) and (new_port == "Inactive") and (f_status != 'restart'):
+                subprocess.run('notify-send -i /Media/bitmap.png -u low "FTPd Status" "Service was already disabled"', stdout=subprocess.PIPE, text=True, shell=True)
+
+            elif (f_status == 'restart') and (new_port == "Active"):
+                subprocess.run('notify-send -i /Media/bitmap.png -u low "FTPd Status" "Service restarted"', stdout=subprocess.PIPE, text=True, shell=True)
+
+            elif (f_status == 'restart') and (new_port == "Inactive"):
+                subprocess.run('notify-send -i /Media/bitmap.png -u low "FTPd Status" "Could not restart"', stdout=subprocess.PIPE, text=True, shell=True)
+
+            else:
+                subprocess.run('notify-send -i /Media/bitmap.png -u low "FTPd Status" "Cannot connet"', stdout=subprocess.PIPE, text=True, shell=True)
+
+
 ################################################################################
 
 # Apache service control #
 
     def on_button_a_start_clicked(self, *args):
         # Start apache service
+        self.current_port =  self.apache_status.get_text()
         subprocess.run('service apache2 start', shell=True)
+        self.apache_notify('Active')
+
         
     def on_button_a_stop_clicked(self, *args):
         # Stop apache service
+        self.current_port =  self.apache_status.get_text()
         subprocess.run('service apache2 stop', shell=True)
+        self.apache_notify('Inactive')
+        
 
     def on_button_a_restart_clicked(self, *args):
         # Restart apache service
+        self.current_port =  self.apache_status.get_text()
         subprocess.run('service apache2 restart', shell=True)
+        self.apache_notify('restart')
 
 
 ################################################################################
@@ -108,17 +206,23 @@ class Handler(object):
 
     def on_button_m_start_clicked(self, *args):
         # Start apache service
+        self.current_port =  self.mysql_status.get_text()
         subprocess.run('service mysql start', shell=True)
+        self.mysql_notify('Active')
 
 
     def on_button_m_stop_clicked(self, *args):
         # Stop apache service
+        self.current_port =  self.mysql_status.get_text()
         subprocess.run('service mysql stop', shell=True)
+        self.mysql_notify('Inactive')
 
 
     def on_button_m_restart_clicked(self, *args):
         # Restart apache service
+        self.current_port =  self.mysql_status.get_text()
         subprocess.run('service mysql restart', shell=True)
+        self.mysql_notify('restart')
 
 
 ################################################################################    
@@ -127,46 +231,33 @@ class Handler(object):
 
     def on_button_p_start_clicked(self, *args):
         # Start FTP service
-        if self.validate_ftp()[0] == '●':
-            subprocess.run('service vsftpd start', shell=True)
-        else:
-            pass
+        self.current_port =  self.ftpd_status.get_text()
+        subprocess.run('service vsftpd start', shell=True)
+        self.ftp_notify('Active')
    
     def on_button_p_stop_clicked(self, *args):
         # Stop FTP service
-        if self.validate_ftp()[0] == '●':
-                subprocess.run('service vsftpd stop', shell=True)
-        else:
-            pass
+        self.current_port =  self.ftpd_status.get_text()
+        subprocess.run('service vsftpd stop', shell=True)
+        self.ftp_notify('Inactive')
 
     def on_button_p_restart_clicked(self, *args):
         # Restart FTP service
-        if self.validate_ftp()[0] == '●':
-                subprocess.run('service vsftpd restart', shell=True)
-        else:
-            pass
+        self.current_port =  self.ftpd_status.get_text()
+        subprocess.run('service vsftpd restart', shell=True)
+        self.ftp_notify('restart')
 
 ################################################################################    
 
 # Open directory button #
 
     def on_open_directory_clicked(self, *args):
-        try:
-            os.popen('cd  /var/www/html; current_user=`logname`; sudo -u ${current_user} nautilus .')
-        except:
-            os.popen('cd  /var/www/html; current_user=`logname`; sudo -u ${current_user} nemo .')
-        else:
-            os.popen('cd  /var/www/html; current_user=`logname`; sudo -u ${current_user} dolphin .')
+        os.popen('for file_manager in $file_manager thunar konqueror nautilus dolphin deepin nemo xfe; do if which $file_manager > /dev/null 2>&1; then exec $file_manager /var/www/html; fi; done')
 
 # Open directory logs apache #
 
     def on_log_mysql_clicked(self,*args):
-        try:
-            os.popen('cd /var/log/mysql; current_user=`logname`; sudo -u ${current_user} nautilus .')
-        except:
-            os.popen('cd /var/log/mysql; current_user=`logname`; sudo -u ${current_user} nemo .')
-        else:
-            os.popen('cd /var/log/mysql; current_user=`logname`; sudo -u ${current_user} dolphin .')
+        os.popen('for file_manager in $file_manager thunar konqueror nautilus dolphin deepin nemo xfe; do if which $file_manager > /dev/null 2>&1; then exec $file_manager admin:///var/log/mysql; fi; done')
 
 # Open about #
 
@@ -228,15 +319,23 @@ class Handler(object):
         # Change apache port
         current_port = self.get_apache_port()
         new_port = self.entry_apache_port.get_text()
-        subprocess.run(f'sudo sed -i "5 s/{current_port}/{new_port}/" /etc/apache2/ports.conf', shell=True)
+        subprocess.run(f'pkexec sed -i "5 s/{current_port}/{new_port}/" /etc/apache2/ports.conf', shell=True)
+
+        if current_port != new_port:
+            subprocess.run(f'notify-send -i /Media/bitmap.png -u low "Apache Port" "Port changed from {current_port} to {new_port}"', stdout=subprocess.PIPE, text=True, shell=True)
+        else:
+            subprocess.run(f'notify-send -i /Media/bitmap.png -u low "Apache Port" "There were no changes"', stdout=subprocess.PIPE, text=True, shell=True)
 
     def on_send_mysql_port_clicked(self, *args):
         # Change apache port
-        with open('/etc/mysql/mariadb.conf.d/50-server.cnf', 'r') as mysql_port_file:
-            text_file = mysql_port_file.readlines()
-        current_port = str(text_file[18].replace('#port', '').strip().replace('= ', ''))
+        current_port = self.get_mysql_port()
         new_port = self.entry_mysql_port.get_text()
-        subprocess.run(f'sudo sed -i "5 s/{current_port}/{new_port}/" /etc/mysql/mariadb.conf.d/50-server.cnf', shell=True)
+        subprocess.run(f'pkexec sed -i "5 s/{current_port}/{new_port}/" /etc/mysql/mariadb.conf.d/50-server.cnf', shell=True)
+
+        if current_port != new_port:
+            subprocess.run(f'notify-send -i /Media/bitmap.png -u low "MySQL Port" "Port changed from {current_port} to {new_port}"', stdout=subprocess.PIPE, text=True, shell=True)
+        else:
+            subprocess.run(f'notify-send -i /Media/bitmap.png -u low "MySQL Port" "There were no changes"', stdout=subprocess.PIPE, text=True, shell=True)
 
 
 ################################################################################ 
@@ -329,19 +428,16 @@ class CurrentServiceStatus(Handler):
 
                 self.ftp_port.set_text('Not found')
 
-            sleep(2)
+            sleep(5)
 
 
-main_thread = CurrentServiceStatus
-thread = threading.Thread(target=main_thread)
-thread.daemon = True
-thread.start()
-
-    
 builder.connect_signals(Handler())
 window = builder.get_object('main_window')
 window.show_all()
 
 if __name__ == '__main__':
+    main_thread = CurrentServiceStatus
+    thread = threading.Thread(target=main_thread)
+    thread.daemon = True
+    thread.start()
     Gtk.main()
-

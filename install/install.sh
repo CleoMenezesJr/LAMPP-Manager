@@ -1,15 +1,15 @@
 #!/bin/bash
 
-sudo apt update && sudo apt upgrade
+sudo apt update & sudo apt upgrade -y
 sudo apt purge --remove apache* php* mariadb*
 sudo apt autoremove
 sudo apt install mariadb-server -y
 sudo apt install mariadb-client -y
-sudo apt install php*
+sudo apt install php php-fpm php-gd php-curl php-mysql libapache2-mod-php -y
 cd  /opt/LAMPP-Manager/configuration\ files
 sudo mv -f /opt/LAMPP-Manager/configuration\ files/ info.php /var/www/html/
 sudo a2enmod rewrite
-sudo service apache2 restart
+sudo service apache2 restartx
 cd  /opt/LAMPP-Manager/configuration\ files
 sudo mv -f 000-default.conf /etc/apache2/sites-available/
 sudo apt install phpmyadmin php-mbstring php-zip php-gd php-json php-curl -y
@@ -26,7 +26,7 @@ sudo apt install apache2 apache2-bin -y
 sudo chmod 777 -R /var/www/html
 sudo service apache2 restart
 sudo apt-get install vsftpd
-udo apt-get install gir1.2-appindicator3
+
 
 echo 'Restart LAMPP Manager and Enjoy!'
 exit
