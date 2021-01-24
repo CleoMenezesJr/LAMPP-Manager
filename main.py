@@ -93,6 +93,7 @@ class Handler(object):
         elif 'inactive (dead)' in self.validate_apache():
             new_port = 'Inactive'
 
+
         if  (self.current_port != new_port) and (new_port == "Active") and (a_status != 'restart'):
             subprocess.run('notify-send -i /Media/bitmap.png -u low "Apache Status" "Has been activated"', stdout=subprocess.PIPE, text=True, shell=True)
 
@@ -138,7 +139,7 @@ class Handler(object):
         elif (a_mysql == 'restart') and (new_port == "Active"):
             subprocess.run('notify-send -i /Media/bitmap.png -u low "MySQL Status" "Service restarted"', stdout=subprocess.PIPE, text=True, shell=True)
 
-        elif (a_mysql == 'restart') and (new_port == "Inactive"):
+        elif (a_mysql == 'restart') and (new_port == "Inactive") and (a_mysql != 'Inactive'):
             subprocess.run('notify-send -i /Media/bitmap.png -u low "MySQL Status" "Could not restart"', stdout=subprocess.PIPE, text=True, shell=True)
 
         else:
@@ -344,6 +345,7 @@ class CurrentServiceStatus(Handler):
     def __init__(self, *args):
         super().__init__()
         
+
         while True:
 
             try:
@@ -427,14 +429,10 @@ class CurrentServiceStatus(Handler):
                 self.ftpd_img_status.set_from_icon_name('emblem-important', 1)
 
                 self.ftp_port.set_text('Not found')
+            sleep(10)
 
-            sleep(5)
-
-main_thread = CurrentServiceStatus
-thread = threading.Thread(target=main_thread)
-thread.daemon = True
+thread = threading.Thread(target=CurrentServiceStatus, daemon=True)
 thread.start()
-
 
 builder.connect_signals(Handler())
 window = builder.get_object('main_window')
