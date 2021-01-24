@@ -13,7 +13,7 @@
     A great way to Manager and install LAMPP services <br>
     <img alt="GitHub stars" src="https://img.shields.io/github/stars/CleoMenezes/LAMPP-Manager?style=social">
     <img alt="GitHub followers" src="https://img.shields.io/github/followers/CleoMenezes?label=Follow%20me%20%3A%29&style=social">
-    <a href="https://github.com/CleoMenezes/LAMPP-Manager/releases/tag/v0.0.3">
+    <a href="https://github.com/CleoMenezes/LAMPP-Manager/releases/tag/v0.0.4">
     <img src="https://img.shields.io/github/downloads/CleoMenezes/LAMPP-Manager/total"
         alt="Download" /></a>
 </h2>
