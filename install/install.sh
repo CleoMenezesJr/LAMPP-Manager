@@ -1,11 +1,11 @@
 #!/bin/bash
 
 sudo apt update & sudo apt upgrade -y
-sudo apt purge --remove apache* php* mariadb*
-sudo apt autoremove
+sudo apt purge --remove apache* php* mariadb* -y
+sudo apt autoremove -y
 sudo apt install mariadb-server -y
 sudo apt install mariadb-client -y
-sudo apt install php php-fpm php-gd php-curl php-mysql libapache2-mod-php -y
+sudo apt install php -y
 cd  /opt/LAMPP-Manager/configuration\ files
 sudo mv -f /opt/LAMPP-Manager/configuration\ files/ info.php /var/www/html/
 sudo a2enmod rewrite
@@ -21,12 +21,13 @@ sudo a2enconf phpmyadmin.conf
 sudo mkdir -p /var/lib/phpmyadmin/tmp
 sudo chown www-data:www-data /var/lib/phpmyadmin/tmp
 sudo a2enmod proxy_fcgi setenvif
-sudo a2enconf php*.*-fpm
-sudo apt install apache2 apache2-bin -y
 sudo chmod 777 -R /var/www/html
-sudo service apache2 restart
 sudo apt-get install vsftpd
+sudo apt install libnotify-bin
+sudo apt install apache2-bin  -y
+sudo a2enconf php*.*-fpm
+sudo apt install apache2
 
-
+echo
 echo 'Restart LAMPP Manager and Enjoy!'
 exit

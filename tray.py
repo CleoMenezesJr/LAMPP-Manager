@@ -23,8 +23,8 @@ class Indicator():
         openLM.connect('activate', self.openLM)
         menu.append(openLM)
         # separator
-        menu_sep = Gtk.SeparatorMenuItem()
-        menu.append(menu_sep)
+        # menu_sep = Gtk.SeparatorMenuItem()
+        # menu.append(menu_sep)
         # quit
         item_quit = Gtk.MenuItem('Quit')
         item_quit.connect('activate', self.stop)
@@ -34,8 +34,8 @@ class Indicator():
         return menu
 
     def openLM(self, source):
-      os.popen('pkill -f main.py')
-      os.popen('python3 main.py')
+      os.popen('pkill -f main.py; exit')
+      os.popen('python3 main.py; exit')
 
     def stop(self, source):
       os.popen('pkill -f main.py')

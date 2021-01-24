@@ -321,18 +321,18 @@ class Handler(object):
         new_port = self.entry_apache_port.get_text()
         subprocess.run(f'pkexec sed -i "5 s/{current_port}/{new_port}/" /etc/apache2/ports.conf', shell=True)
 
-        if current_port != new_port:
+        if current_port != self.get_apache_port():
             subprocess.run(f'notify-send -i /Media/bitmap.png -u low "Apache Port" "Port changed from {current_port} to {new_port}"', stdout=subprocess.PIPE, text=True, shell=True)
         else:
             subprocess.run(f'notify-send -i /Media/bitmap.png -u low "Apache Port" "There were no changes"', stdout=subprocess.PIPE, text=True, shell=True)
 
     def on_send_mysql_port_clicked(self, *args):
-        # Change apache port
+        # Change mysql port
         current_port = self.get_mysql_port()
         new_port = self.entry_mysql_port.get_text()
         subprocess.run(f'pkexec sed -i "5 s/{current_port}/{new_port}/" /etc/mysql/mariadb.conf.d/50-server.cnf', shell=True)
 
-        if current_port != new_port:
+        if current_port != self.get_mysql_port():
             subprocess.run(f'notify-send -i /Media/bitmap.png -u low "MySQL Port" "Port changed from {current_port} to {new_port}"', stdout=subprocess.PIPE, text=True, shell=True)
         else:
             subprocess.run(f'notify-send -i /Media/bitmap.png -u low "MySQL Port" "There were no changes"', stdout=subprocess.PIPE, text=True, shell=True)
@@ -430,14 +430,15 @@ class CurrentServiceStatus(Handler):
 
             sleep(5)
 
+main_thread = CurrentServiceStatus
+thread = threading.Thread(target=main_thread)
+thread.daemon = True
+thread.start()
+
 
 builder.connect_signals(Handler())
 window = builder.get_object('main_window')
 window.show_all()
 
 if __name__ == '__main__':
-    main_thread = CurrentServiceStatus
-    thread = threading.Thread(target=main_thread)
-    thread.daemon = True
-    thread.start()
     Gtk.main()
