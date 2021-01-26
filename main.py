@@ -288,10 +288,9 @@ class Handler(object):
     def on_check_update_clicked(self, *args):
         if CheckRelease.checkRelease():
             # print('There is a new update')
-            pass
+            subprocess.run('notify-send -i /Media/bitmap.png -u low "There is a new update" "A new version is available on GitHub"', shell=True)
         else:
-            # print('There is not a new update')
-            pass
+            subprocess.run('notify-send -i /Media/bitmap.png -u low "There is not a new update" "We are working for it, new features are available soon"', shell=True)
         
         
 # Start all services #
