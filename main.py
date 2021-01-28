@@ -72,6 +72,7 @@ class Handler(object):
         self.status_command_a = subprocess.run('service apache2 status', stdout=subprocess.PIPE, text=True, shell=True)
         return str(self.status_command_a.stdout)
 
+
     def validate_mysql(self, *args):
         self.status_command_m = subprocess.run('service mysql status', stdout=subprocess.PIPE, text=True, shell=True)
         return str(self.status_command_m.stdout)
@@ -429,7 +430,9 @@ class CurrentServiceStatus(Handler):
                 self.ftpd_img_status.set_from_icon_name('emblem-important', 1)
 
                 self.ftp_port.set_text('Not found')
+                
             sleep(10)
+            
 
 thread = threading.Thread(target=CurrentServiceStatus, daemon=True)
 thread.start()

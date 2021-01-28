@@ -34,7 +34,7 @@ class Indicator():
         return menu
 
     def openLM(self, source):
-      os.popen('pkill -f main.py; exit')
+      os.popen('pkill -f main.py; python3 main.py')
       os.popen('python3 main.py; exit')
 
     def stop(self, source):
