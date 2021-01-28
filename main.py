@@ -287,11 +287,13 @@ class Handler(object):
 # Check update
 
     def on_check_update_clicked(self, *args):
-        if CheckRelease.checkRelease():
-            # print('There is a new update')
-            subprocess.run('notify-send -i /Media/bitmap.png -u low "There is a new update" "A new version is available on GitHub"', shell=True)
-        else:
-            subprocess.run('notify-send -i /Media/bitmap.png -u low "There is not a new update" "We are working for it, new features are available soon"', shell=True)
+        try:
+            if CheckRelease.checkRelease():
+                subprocess.run('notify-send -i /Media/bitmap.png -u low "There is a new update" "A new version is available on GitHub"', shell=True)
+            else:
+                subprocess.run('notify-send -i /Media/bitmap.png -u low "There is not a new update" "We are working for it, new features are available soon"', shell=True)
+        except:
+            subprocess.run('notify-send -i /Media/bitmap.png -u low "Service unavailable" "There is a problem accessing the link, please try again later"', shell=True)
         
         
 # Start all services #
