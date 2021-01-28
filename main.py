@@ -5,6 +5,7 @@ import subprocess
 import os
 from time import sleep
 import threading
+from check_release import CheckRelease
 
 
 builder = Gtk.Builder()
@@ -23,6 +24,7 @@ class Handler(object):
         self.apache_status = builder.get_object('apache_status')
         self.mysql_status = builder.get_object('mysql_status')
         self.open_directory = builder.get_object('open_directory')
+        self.check_updtae = builder.get_object('check_update')
         self.log_mysql = builder.get_object('log_mysql')
         self.install_lampp = builder.get_object('install_lampp')
         self.button_a_restart = builder.get_object('button_a_restart')
@@ -282,7 +284,16 @@ class Handler(object):
     def on_php_info_clicked(self, *args):
         os.popen(f'sudo -u `logname` sensible-browser http://localhost:{str(self.get_apache_port())}/info.php ; exit')
 
+# Check update
 
+    def on_check_update_clicked(self, *args):
+        if CheckRelease.checkRelease():
+            # print('There is a new update')
+            subprocess.run('notify-send -i /Media/bitmap.png -u low "There is a new update" "A new version is available on GitHub"', shell=True)
+        else:
+            subprocess.run('notify-send -i /Media/bitmap.png -u low "There is not a new update" "We are working for it, new features are available soon"', shell=True)
+        
+        
 # Start all services #
     def on_button_start_all_clicked(self, *args):
 
