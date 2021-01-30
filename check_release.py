@@ -11,7 +11,5 @@ class CheckRelease:
     @classmethod
     def checkRelease(cls):
         cls._getInformation()
-        if cls.current_version == cls.release:
-            return False
-        else:
-            return True
+        return cls.current_version != cls.release
+
